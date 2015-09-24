@@ -1,1 +1,1 @@
-.bash_logout
+echo "See you later"
