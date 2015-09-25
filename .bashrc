@@ -1,4 +1,4 @@
-echo bashrc has loaded
+echo bashrc has loaded!
 
 alias ll='ls -lahG'
 #alias e='/usr/local/Cellar/emacs/24.4/bin/emacs'

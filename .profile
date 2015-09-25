@@ -54,4 +54,4 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 # Your previous /Users/Startec/.bash_profile file was backed up as /Users/Startec/.bash_profile.macports-saved_2015-04-11_at_12:38:25
-
+# test
