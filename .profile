@@ -4,19 +4,13 @@ export TERM='xterm-256color'
 
 export PATH=/usr/local/bin:$PATH
 
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\] \[\033[33;1m\]\w\[\033[m\] (\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$ "
-
-export PATH=$PATH:bin:/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$PATH
+export PATH=$PATH:bin:/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:
 
 export EDITOR='emacs'
 
 export MONGO_PATH=/usr/local/mongodb
 
 export PATH=$PATH:$MONGO_PATH/bin
-
-export CLICOLOR=1
-
-export LSCOLORS=GxFxCxDxBxegedabagaced
 
 
 #Setting path for the Android SDK
