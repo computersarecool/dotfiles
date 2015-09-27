@@ -1,4 +1,4 @@
-echo bashrc has loaded!
+echo bashrc has loaded
 
 
 
