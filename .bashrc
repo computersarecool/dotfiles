@@ -23,5 +23,7 @@ export CLICOLOR=1
 
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-tmux a || tmux new
+if [ -z ${TMUX} ]; then
+    tmux attach || tmux
+fi
 
