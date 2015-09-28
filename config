@@ -1,0 +1,12 @@
+Host *amazonaws.com
+  IdentityFile ~/.ssh/id_rsa
+  User ec2-user
+
+Host optonox
+  HostName optonox.com
+  Port 50505
+  User optonox
+  
+#Host github.com
+#  IdentityFile ~/.ssh/github.key
+
