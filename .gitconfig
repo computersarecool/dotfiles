@@ -1,3 +1,5 @@
 [user]
 	email = willy@willynolan.com
 	name = computersarecool
+[core]
+	editor = emacs
