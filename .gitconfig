@@ -3,3 +3,5 @@
 	name = computersarecool
 [core]
 	editor = emacs
+[push]
+	default = matching
