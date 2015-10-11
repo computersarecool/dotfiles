@@ -2,7 +2,7 @@ echo Hello Optonox, your profile has loaded
 
 export TERM='xterm-256color'
 
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:
 
 export PATH=$PATH:bin:/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:
 
@@ -14,7 +14,7 @@ export PATH=$PATH:$MONGO_PATH/bin
 
 
 #Setting path for the Android SDK
-export PATH=${PATH}:~/developer_tools/android_sdk/tools:~/developer_tools/android_sdk/platform-tools
+export PATH=$PATH:~/developer_tools/android_sdk/tools:~/developer_tools/android_sdk/platform-tools
 
 
 # Setting PATH for MacPython 2.5

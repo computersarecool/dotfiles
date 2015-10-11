@@ -26,6 +26,10 @@ export EDITOR='emacs'
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
+
+
+
+
 if [ -z ${TMUX} ]; then
   tmux attach || tmux
 fi
