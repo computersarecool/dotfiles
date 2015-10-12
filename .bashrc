@@ -25,7 +25,8 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\] \[\033[33;1m\]\w\[\033[m\] (\$
 export EDITOR='emacs'
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-
+#export GREP_COLOR="34;47"
+#export GREP_OPTIONS="--color-auto"
 
 
 
