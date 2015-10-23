@@ -1,4 +1,4 @@
-# Check to see if this is interactive
+# Check to see if this is interactive, if not don't read customize settings
 if [ -z "$PS1" ]; then
   return
 fi
@@ -28,6 +28,10 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 #export GREP_COLOR="34;47"
 #export GREP_OPTIONS="--color-auto"
 
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
 
 if [ -z ${TMUX} ]; then
   tmux attach || tmux
