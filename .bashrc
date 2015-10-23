@@ -29,19 +29,14 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 #export GREP_OPTIONS="--color-auto"
 
 
-
-
 if [ -z ${TMUX} ]; then
   tmux attach || tmux
 fi
 
 ###-begin-npm-completion-###
-#
 # npm command completion script
-#
 # Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
 # Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
-#
 
 if type complete &>/dev/null; then
   _npm_completion () {
@@ -92,3 +87,4 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
