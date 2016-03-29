@@ -4,7 +4,7 @@ export TERM='xterm-256color'
 
 export PATH=/usr/local/bin
 
-export PATH=$PATH:bin:/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+export PATH=$PATH:/sbin:/usr/bin:/usr/local/sbin
 
 export EDITOR='emacs'
 
@@ -48,6 +48,7 @@ export PATH=$PATH:/opt/node-v4.2.1-linux-x64/bin/node
 # Load NVM
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
 
+# Source bashrc if it exists
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
