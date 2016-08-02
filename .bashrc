@@ -1,15 +1,16 @@
-# Check to see if this is interactive, if not don't read customize settings
+# check to see if this is interactive, if not don't read customize settings
 if [ -z "$PS1" ]; then
   return
 fi
 
-echo bashrc has loaded
+echo "bashrc has loaded"
 
-# Set aliases
+# set aliases
 alias ll='ls -lahG'
 alias e='emacs'
 
-# Set tern project shortcut
+
+# define tern project shortcut
 nd () {
     touch .tern-project
     echo "{
@@ -21,20 +22,23 @@ nd () {
 }
 
 
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\] \[\033[33;1m\]\w\[\033[m\] (\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$ "
+# Set prompt and colors
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\H\[\033[33;1m\]\w\[\033[m\] (\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$ "
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-#export GREP_COLOR="34;47"
-#export GREP_OPTIONS="--color-auto"
 
 
+# add git auto-completion
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
+
+# attach to a tmux session or create new one
 if [ -z ${TMUX} ]; then
   tmux attach || tmux
 fi
+
 
 ###-begin-npm-completion-###
 # npm command completion script
