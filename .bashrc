@@ -3,10 +3,11 @@ if [ -z "$PS1" ]; then
   return
 fi
 
-echo "bashrc has loaded"
+echo "Optonox, your bashrc has loaded"
 
 # set aliases
 alias ll='ls -lahG'
+alias emacs='emacs -nw'
 alias e='emacs'
 
 
