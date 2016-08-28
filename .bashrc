@@ -1,15 +1,12 @@
 # check to see if this is interactive, if not don't read customize settings
-if [ -z "$PS1" ]; then
+if [[ -z $PS1 ]]; then
   return
 fi
-
-echo "Optonox, your bashrc has loaded"
 
 # set aliases
 alias ll='ls -lahG'
 alias emacs='emacs -nw'
 alias e='emacs'
-
 
 # define tern project shortcut
 nd () {
@@ -22,24 +19,23 @@ nd () {
  }" > .tern-project
 }
 
-
 # Set prompt and colors
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\H\[\033[33;1m\]\w\[\033[m\] (\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$ "
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-
 
 # add git auto-completion
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
+# notify that .bashrc has loaded
+echo "Optonox, your bashrc has loaded"
 
 # attach to a tmux session or create new one
 if [ -z ${TMUX} ]; then
   tmux attach || tmux
 fi
-
 
 ###-begin-npm-completion-###
 # npm command completion script
