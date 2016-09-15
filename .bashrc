@@ -33,8 +33,10 @@ fi
 echo "Optonox, your bashrc has loaded"
 
 # attach to a tmux session or create new one
-if [ -z ${TMUX} ]; then
-  tmux attach || tmux
+if type -P "tmux" &>/dev/null; then
+  if [ -z ${TMUX} ]; then
+    tmux attach || tmux
+  fi
 fi
 
 ###-begin-npm-completion-###
