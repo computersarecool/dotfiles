@@ -1,4 +1,4 @@
-# check to see if this is interactive, if not do not read customize settings
+# check to see if this is interactive, if it is read customize settings
 if [[ -z $PS1 ]]; then
   return
 fi
