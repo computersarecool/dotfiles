@@ -5,12 +5,11 @@ fi
 
 # set aliases
 alias ll='ls -lahG'
-alias emacs='emacs -nw'
+alias emacs='emacsclient -c -a "" $*'
 alias e='emacs'
 
 # define tern project shortcut
 nd () {
-    touch .tern-project
     echo "{
     \"plugins\": {
         \"node\": {
@@ -18,6 +17,9 @@ nd () {
     }
  }" > .tern-project
 }
+
+# ignore spaces in history
+HISTCONTROL=ignorespace
 
 # Set prompt and colors
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\H\[\033[33;1m\]\w\[\033[m\] (\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$ "
@@ -31,13 +33,6 @@ fi
 
 # notify that .bashrc has loaded
 echo "Optonox, your bashrc has loaded"
-
-# attach to a tmux session or create new one
-if type -P "tmux" &>/dev/null; then
-  if [ -z ${TMUX} ]; then
-    tmux attach || tmux
-  fi
-fi
 
 ###-begin-npm-completion-###
 # npm command completion script
