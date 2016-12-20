@@ -1,5 +1,6 @@
 #!/bin/bash
 USERDIR="/home/optonox"
+
 # install all packages
 apt-get update
 apt-get install -y git
@@ -13,21 +14,6 @@ apt-get install -y emacs
 pip3 install --upgrade pip3
 pip3 install virtualenv
 pip3 install pylint
-
-# configure installing for latest version of node
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-apt-get install -y nodejs
-
-# make a new folder for npm globals
-mkdir -p "$USERDIR/.npm-global"
-npm config set prefix "$USERDIR/.npm-global"
-export PATH="$USERDIR/.npm-global:$PATH"
-
-# install the emacs add-ons
-npm install -g tern
-npm install -g standard
-npm install -g jshint
-npm install -g nodemon
 
 # make optonox owner of everything in user directory
 chown -R optonox:optonox $USERDIR
@@ -88,6 +74,21 @@ git clone https://github.com/computersarecool/dotemacs.git "$USERDIR/.emacs.d"
 
 # return ownership of all files in user directory
 chown -R optonox:optonox $USERDIR
+
+# configure installing for latest version of node
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+apt-get install -y nodejs
+
+# make a new folder for npm globals
+mkdir -p "$USERDIR/.npm-global"
+npm config set prefix "$USERDIR/.npm-global"
+export PATH="$USERDIR/.npm-global:$PATH"
+
+# install the emacs add-ons
+npm install -g tern
+npm install -g standard
+npm install -g jshint
+npm install -g nodemon
 
 # install mongodb
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
