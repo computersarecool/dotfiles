@@ -1,24 +1,26 @@
 #!/bin/bash
 USERDIR="/home/optonox"
 
+# add all repos
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
 # install all packages
 apt-get update
 apt-get install -y git
-apt-get install -y python3
-apt-get install -y python3-pip
 apt-get install -y mosh
 apt-get install -y vlock
 apt-get install -y emacs
 
 # upgrade and install python packages
-pip3 install --upgrade pip3
+pip3 install --upgrade pip
 pip3 install virtualenv
 pip3 install pylint
 
 # make optonox owner of everything in user directory
 chown -R optonox:optonox $USERDIR
 
-# clone dot files and create links to them in homedirectories
+# clone dot files and create links to them in $HOME
 # show dot files
 shopt -s dotglob
 FILES="$USERDIR/documents/gitprojects/dotfiles"/*
@@ -91,9 +93,6 @@ npm install -g jshint
 npm install -g nodemon
 
 # install mongodb
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-apt-get update
 apt-get install -y mongodb-org
 
 # read .profile
