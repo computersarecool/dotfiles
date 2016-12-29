@@ -7,6 +7,7 @@ fi
 alias ll='ls -lahG'
 alias emacs='emacsclient -c -a "" $*'
 alias e='emacs'
+alias python='python3'
 
 # define tern project shortcut
 nd () {
