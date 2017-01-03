@@ -8,7 +8,6 @@ Type=forking
 User=optonox
 ExecStart=/usr/bin/emacs --daemon
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
-Restart=always
 TimeoutStartSec=0
 
 [Install]
