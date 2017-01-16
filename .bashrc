@@ -1,15 +1,14 @@
-# check to see if this is interactive, if it is read customize settings
+# Check to see if this is interactive, if it is read customize settings
 if [[ -z $PS1 ]]; then
   return
 fi
 
-# set aliases
-alias ll='ls -lahG'
+# Set aliases
+alias ll='ls -lahG --color'
 alias emacs='emacsclient -c -a "" $*'
 alias e='emacs'
-alias python='python3'
 
-# define tern project shortcut
+# Define tern project shortcut
 nd () {
     echo "{
     \"plugins\": {
@@ -19,21 +18,22 @@ nd () {
  }" > .tern-project
 }
 
-# ignore spaces in history
+# Ignore commands prefixed by space
 HISTCONTROL=ignorespace
 
 # Set prompt and colors
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\H\[\033[33;1m\]\w\[\033[m\] (\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$ "
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+LS_COLORS='di=32:fi=0:ln=5;31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:'
+export LS_COLORS
 
-# add git auto-completion
+# Git auto-completion
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-# notify that .bashrc has loaded
-echo "Optonox, your bashrc has loaded"
+# Notify that .bashrc has loaded
+echo "The optonox bashrc file has loaded"
 
 ###-begin-npm-completion-###
 # npm command completion script

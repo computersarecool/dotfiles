@@ -1,32 +1,32 @@
 #!/bin/bash
 USERDIR="/home/optonox"
 
-# add all repos
+# Add all repos
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
-# install all packages
+# Install all packages
 apt-get update
 apt-get install -y git
 apt-get install -y mosh
 apt-get install -y vlock
 apt-get install -y emacs
 
-# upgrade and install python packages
+# Upgrade and install python packages
 pip3 install --upgrade pip
 pip3 install virtualenv
 pip3 install pylint
 
-# make optonox owner of everything in user directory
+# Make optonox owner of everything in user directory
 chown -R optonox:optonox $USERDIR
 
-# clone dot files and create links to them in $HOME
-# show dot files
+# Clone dot files and create links to them in $HOME
+# Show dot files
 shopt -s dotglob
 FILES="$USERDIR/documents/gitprojects/dotfiles"/*
 for f in $FILES
 do
-    # get file base name
+    # Get file base name
     b=$(basename $f)
     # don't do anything with .git folder
     if [ $b == ".git" ]; then
@@ -52,7 +52,7 @@ do
         done
     fi
 
-    # don't do anything with the setupfiles_dir
+    # skip over the setupfiles_dir
     if [ $b == "setup_files" ]; then
         continue
     fi
@@ -74,28 +74,26 @@ done
 rm -rf "$USERDIR/.emacs.d"
 git clone https://github.com/computersarecool/dotemacs.git "$USERDIR/.emacs.d"
 
-# return ownership of all files in user directory
+# Return ownership of all files in user directory
 chown -R optonox:optonox $USERDIR
 
-# configure installing for latest version of node
+# Configure installing for latest version of node
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 apt-get install -y nodejs
 
-# make a new folder for npm globals
+# Make a new folder for npm globals
 mkdir -p "$USERDIR/.npm-global"
 npm config set prefix "$USERDIR/.npm-global"
 export PATH="$USERDIR/.npm-global:$PATH"
 
-# install the emacs add-ons
+# Install the emacs add-ons
 npm install -g tern
 npm install -g standard
 npm install -g jshint
 npm install -g nodemon
 npm install -g gulp
 
-# install mongodb
+# Install mongodb
 apt-get install -y mongodb-org
 
-# read .profile
 source "$USERDIR/.profile"
-

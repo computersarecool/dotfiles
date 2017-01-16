@@ -11,10 +11,10 @@ export EDITOR='emacs'
 
 echo "Hello Optonox, your profile has loaded"
 
-# load NVM
+# Load NVM
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
 
-# source bashrc if it exists
+# Source bashrc if it exists
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
