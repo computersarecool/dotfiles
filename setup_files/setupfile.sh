@@ -49,10 +49,10 @@ do
             sfb=$(basename $sf)
             ln $sf "/etc/systemd/system/$sfb"
             systemctl enable $sfb
-        done
-    fi
+        Done
+    Fi
 
-    # skip over the setupfiles_dir
+    # Skip over the setupfiles_dir
     if [ $b == "setup_files" ]; then
         continue
     fi
@@ -92,6 +92,15 @@ npm install -g standard
 npm install -g jshint
 npm install -g nodemon
 npm install -g gulp
+
+# Make a tern config file in home directory
+echo "{
+    \"plugins\": {
+        \"node\": {
+        }
+    }
+ }" > "$USERDIR/.tern-config"
+
 
 # Install mongodb
 apt-get install -y mongodb-org
