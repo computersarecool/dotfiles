@@ -90,6 +90,7 @@ export PATH="$USERDIR/.npm-global:$PATH"
 npm install -g tern
 npm install -g standard
 npm install -g jshint
+npm install -g jsonlint
 npm install -g nodemon
 npm install -g gulp
 

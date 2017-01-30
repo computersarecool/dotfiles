@@ -9,7 +9,7 @@ export MONGO_PATH=/usr/local/mongodb
 export PATH=$PATH:$MONGO_PATH/bin
 export EDITOR='emacs'
 
-echo "Hello Optonox, your profile has loaded"
+echo "Hello optonox, your profile has loaded"
 
 # Source bashrc if it exists
 if [ -f ~/.bashrc ]; then

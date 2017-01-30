@@ -4,19 +4,10 @@ if [[ -z $PS1 ]]; then
 fi
 
 # Set aliases
+alias python=python3
 alias ll='ls -lahG --color'
 alias emacs='emacsclient -c -a "" $*'
 alias e='emacs'
-
-# Define tern project shortcut
-nd () {
-    echo "{
-    \"plugins\": {
-        \"node\": {
-        }
-    }
- }" > .tern-project
-}
 
 # Ignore commands prefixed by space
 HISTCONTROL=ignorespace
@@ -31,9 +22,6 @@ export LS_COLORS
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
-
-# Notify that .bashrc has loaded
-echo "The optonox bashrc file has loaded"
 
 ###-begin-npm-completion-###
 # npm command completion script
@@ -90,3 +78,5 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
+# Notify that .bashrc has loaded
+echo "The optonox bashrc file has loaded"
