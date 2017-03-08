@@ -86,7 +86,7 @@ mkdir -p "$USERDIR/.npm-global"
 npm config set prefix "$USERDIR/.npm-global"
 export PATH="$USERDIR/.npm-global:$PATH"
 
-# Install the emacs add-ons
+# Install npm packages (many of these are emacs add-ons)
 npm install -g tern
 npm install -g standard
 npm install -g jshint
