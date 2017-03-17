@@ -14,6 +14,7 @@ echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" 
 # Install all packages
 apt-get update
 apt-get install -y mosh
+apt-get install -y python3-pip
 apt-get install -y vlock
 apt-get install -y emacs
 apt-get install -y mongodb-org
