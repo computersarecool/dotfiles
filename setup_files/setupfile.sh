@@ -9,6 +9,7 @@ DOTFILES_LOCATION="$USERDIR/documents/dotfiles"
 # Remove (possibly existing) user directory add user and make a documents directory
 rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
+usermod -aG sudo $USERNAME
 
 # Add all package sources
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
