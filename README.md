@@ -26,7 +26,7 @@ It contains three things
 - nodemon
 - gulp
 
-#### This sets up service (`systemd` files for):
+#### This sets up service (`systemd` files for)
 - Emacs (set to run as a daemon)
 
 #### This contains the following dotfiles
