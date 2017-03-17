@@ -105,7 +105,7 @@ do
     fi
 
     # Create links to the user directory (where bash looks for them)
-    ln -s "$f" "$DOTFILES_LOCATION/$b"
+    ln -s "$f" "$USERDIR/$b"
 done
 
 # Remove old and get new emacs config
