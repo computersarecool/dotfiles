@@ -23,8 +23,8 @@ apt-get install -y emacs
 apt-get install -y mongodb-org
 
 # Upgrade and install python packages
-sudo -u "$USERNAME" pip3 install virtualenv
-sudo -u "$USERNAME" pip3 install pylint
+sudo -H -u "$USERNAME" pip3 install virtualenv
+sudo -H -u "$USERNAME" pip3 install pylint
 
 # Configure installing for latest version of node
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
