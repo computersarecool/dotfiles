@@ -1,6 +1,8 @@
 #!/bin/bash
+
+# Set variables used throughout this script
 USERNAME="optonox"
-GIHUB_USERNAME="computersarecool"
+GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
 
 rm -rf "$USERDIR"
@@ -20,9 +22,8 @@ apt-get install -y emacs
 apt-get install -y mongodb-org
 
 # Upgrade and install python packages
-pip3 install --upgrade pip
-pip3 install virtualenv
-pip3 install pylint
+sudo -u "$USERNAME" pip3 install virtualenv
+sudo -u "$USERNAME" pip3 install pylint
 
 # Configure installing for latest version of node
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -47,18 +48,18 @@ chown -R $USERNAME:$USERNAME $USERDIR
 # Clone dot files and create links to them in $HOME
 # Show dot files
 shopt -s dotglob
-FILES="$USERDIR/documents/gitprojects/dotfiles"/*
+FILES="$USERDIR/documents/gitprojects/dotfiles/*"
 for f in $FILES
 do
     # Get file base name
     b=$(basename $f)
     # don't do anything with .git folder
-    if [ $b == ".git" ]; then
+    if [ "$b" == ".git" ]; then
         continue
     fi
 
     # ssh config file is a special case, put it in a special place
-    if [ $b == "config" ]; then
+    if [ "$b" == "config" ]; then
         if [ -f "$USERDIR/.ssh/$b" ]; then
             rm "$USERDIR/.ssh/$b"
         fi
@@ -66,18 +67,18 @@ do
     fi
 
     # Move and enable service files
-    if [ $b == "service_files" ]; then
+    if [ "$b" == "service_files" ]; then
         SERVICEFILES="$USERDIR/documents/gitprojects/dotfiles/service_files"/*
         for sf in $SERVICEFILES
         do
             sfb=$(basename $sf)
-            ln $sf "/etc/systemd/system/$sfb"
-            systemctl enable $sfb
+            ln "$sf" "/etc/systemd/system/$sfb"
+            systemctl enable "$sfb"
         done
     fi
 
     # Skip over the setupfiles_dir
-    if [ $b == "setup_files" ]; then
+    if [ "$b" == "setup_files" ]; then
         continue
     fi
 
