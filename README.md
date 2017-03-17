@@ -6,7 +6,7 @@ It contains three things
 - Service files, to configure services on start
 - `.`files to configure the environment to how I like it
 
-## This installs:
+### This installs
 ##### via `apt-get install`
 - git
 - mosh
