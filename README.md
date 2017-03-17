@@ -47,6 +47,11 @@ sudo passwd optonox (it will be set to temp otherwise)
 - .tmux.conf (unused)
 - SSH Config (example file)
 
+##### TODO
+- Look into python virtualenv not installing correctly and causing problems in emacs
+- Delete default ubuntu user that comes with AMI
+- Logout when script finishes (to force reading of ~/.profile upon subsequent logins)
+
 ### License
 :copyright: Willy Nolan 2017 
 [MIT](http://en.wikipedia.org/wiki/MIT_License)
