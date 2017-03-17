@@ -1,5 +1,5 @@
-Host optonox
-  HostName optonox.com
+Host example
+  HostName example.com
   Port 50505
-  User optonox
+  User exampleUser
 
