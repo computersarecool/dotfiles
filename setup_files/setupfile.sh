@@ -43,7 +43,7 @@ npm install -g nodemon
 npm install -g gulp
 
 
-# Make a documents and dotfiles folder
+# Make a documents and dotfiles folder, SSH
 mkdir -p "$DOTFILES_LOCATION"
 
 # Get location where this script is
@@ -70,8 +70,9 @@ do
         continue
     fi
 
-    # Put SSH config file in place
+    # Put SSH config file in place (make ssh folder if it does not exist)
     if [ "$b" == "config" ]; then
+        mkdir -p "$USERDIR/.ssh"
         if [ -f "$USERDIR/.ssh/$b" ]; then
             rm "$USERDIR/.ssh/$b"
         fi
@@ -80,8 +81,7 @@ do
 
     # Put service files in place and enable
     if [ "$b" == "service_files" ]; then
-        SERVICEFILES="$USERDIR/documents/gitprojects/dotfiles/service_files"/*
-        for sf in $SERVICEFILES
+        for sf in "$f"/*
         do
             sfb=$(basename $sf)
             ln "$sf" "/etc/systemd/system/$sfb"
