@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Set variables used throughout this script
+# Set variables used throughout this script
 USERNAME="optonox"
 GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
@@ -32,6 +32,7 @@ apt-get install -y nodejs
 # Make a new folder for npm globals
 mkdir -p "$USERDIR/.npm-global"
 npm config set prefix "$USERDIR/.npm-global"
+export PATH="$USERDIR/.npm-global:$PATH"
 
 # Install npm packages (many of these are emacs add-ons)
 npm install -g tern
@@ -91,8 +92,8 @@ do
         rm -rf "$USERDIR/$b"
     fi
 
-    # Create links to the userdirectory (where bash looks for them)
-    ln -s $f "$USERDIR/$b"
+    # Create links to the user directory (where bash looks for them)
+    ln -s "$f" "$USERDIR/$b"
 done
 
 # Remove old and get new emacs config
