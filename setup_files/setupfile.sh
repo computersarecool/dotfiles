@@ -32,7 +32,6 @@ apt-get install -y nodejs
 # Make a new folder for npm globals
 mkdir -p "$USERDIR/.npm-global"
 npm config set prefix "$USERDIR/.npm-global"
-export PATH="$USERDIR/.npm-global:$PATH"
 
 # Install npm packages (many of these are emacs add-ons)
 npm install -g tern
