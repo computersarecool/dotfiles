@@ -7,7 +7,7 @@ USERDIR="/home/$USERNAME"
 
 rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
-echo "$USERNAME:temp" | sudo chpasswd
+
 
 # Add all repos
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -48,8 +48,11 @@ chown -R $USERNAME:$USERNAME $USERDIR
 # Clone dot files and create links to them in $HOME
 # Show dot files
 shopt -s dotglob
-FILES="$USERDIR/documents/gitprojects/dotfiles/"*
+# Get location where this script is
+DIR="$(dirname "${BASH_SOURCE[0]}")"
+FILES="../$DIR/"*
 for f in $FILES
+echo "Thing is $f"
 do
     # Get file base name
     b=$(basename $f)
