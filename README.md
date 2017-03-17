@@ -7,7 +7,7 @@ There are three parts to this repo:
 - `.`files to configure the environment to how I like it
 
 ### The setup file in this repo creates the user:
-- optonox
+- `optonox`
 
 ### The setup file in this repo installs:
 ##### via `apt-get install`
