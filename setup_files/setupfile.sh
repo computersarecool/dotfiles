@@ -1,10 +1,11 @@
 #!/bin/bash
 USERNAME="optonox"
 GIHUB_USERNAME="computersarecool"
+USERDIR="/home/$username"
 
+rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
 echo "$USERNAME:temp" | sudo chpasswd
-USERDIR="/home/$username"
 
 # Add all repos
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -93,7 +94,7 @@ do
     ln -s $f "$USERDIR/$b"
 done
 
-# get emacs config
+# Remove old and get new emacs config
 rm -rf "$USERDIR/.emacs.d"
 git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$USERDIR/.emacs.d"
 
