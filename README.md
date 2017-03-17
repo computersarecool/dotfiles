@@ -1,12 +1,12 @@
 # dotfiles
-This is a set of files to configure a Ubuntu Linux machine how I like it
+This is a set of files to configure a Ubuntu Linux machine how I like it.
 
-It contains three things
+There are three parts to this repo:
 - A setup bash script which will install packages and get programs
 - Service files, to configure services on start
 - `.`files to configure the environment to how I like it
 
-### This installs
+### The setup file in this repo installs
 ##### via `apt-get install`
 - git
 - mosh
@@ -26,10 +26,10 @@ It contains three things
 - nodemon
 - gulp
 
-#### This sets up service (`systemd` files for)
+#### The setup file in this repo installs (`systemd` files for)
 - Emacs (set to run as a daemon)
 
-#### This contains the following dotfiles
+#### This repo contains the following dotfiles
 - .bash_logout
 - .bashrc
 - .profile
