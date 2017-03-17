@@ -5,7 +5,7 @@ It contains three things:
 - Service files, to configure services on start
 - `.` (dot) files to configure the environment to how I like it
 
-## Currently this installs
+## This installs:
 ##### via `apt-get install`
 - git
 - mosh
@@ -25,10 +25,10 @@ It contains three things:
 - nodemon
 - gulp
 
-## Currently this sets up service (`systemd` files for):
+##### This sets up service (`systemd` files for):
 - Emacs (set to run as a daemon)
 
-## Currently this creates to the following .dotfiles
+##### This contains the following dotfiles
 - .bash_logout
 - .bashrc
 - .profile
