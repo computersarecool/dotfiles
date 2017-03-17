@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Set variables used throughout this script
+# Set variables used throughout this script
 USERNAME="optonox"
 GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
 
 rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
+echo "$USERNAME:temp" | sudo chpasswd
 
 # Add all repos
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -47,7 +48,7 @@ chown -R $USERNAME:$USERNAME $USERDIR
 # Clone dot files and create links to them in $HOME
 # Show dot files
 shopt -s dotglob
-FILES="$USERDIR/documents/gitprojects/dotfiles/*"
+FILES="$USERDIR/documents/gitprojects/dotfiles/"*
 for f in $FILES
 do
     # Get file base name
