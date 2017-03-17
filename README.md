@@ -1,5 +1,5 @@
 # dotfiles
-This is a set of files to configure a Ubuntu Linux machine how I like it.
+This is a set of files to configure a Ubuntu Linux machine how I like it
 
 It contains three things
 - A setup bash script which will install packages and get programs
