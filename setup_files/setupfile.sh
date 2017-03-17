@@ -1,5 +1,10 @@
 #!/bin/bash
-USERDIR="/home/optonox"
+USERNAME="optonox"
+GIHUB_USERNAME="computersarecool"
+
+sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
+echo "$USERNAME:temp" | sudo chpasswd
+USERDIR="/home/$username"
 
 # Add all repos
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -34,8 +39,8 @@ npm install -g jsonlint
 npm install -g nodemon
 npm install -g gulp
 
-# Make optonox owner of everything in user directory
-chown -R optonox:optonox $USERDIR
+# Make USERNAME owner of everything in user directory
+chown -R $USERNAME:$USERNAME $USERDIR
 
 # Clone dot files and create links to them in $HOME
 # Show dot files
@@ -90,7 +95,7 @@ done
 
 # get emacs config
 rm -rf "$USERDIR/.emacs.d"
-git clone https://github.com/computersarecool/dotemacs.git "$USERDIR/.emacs.d"
+git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$USERDIR/.emacs.d"
 
 
 # Make a tern config file in home directory
@@ -102,6 +107,6 @@ echo "{
  }" > "$USERDIR/.tern-config"
 
 # Return ownership of all files in user directory
-chown -R optonox:optonox $USERDIR
+chown -R $USERNAME:$USERNAME $USERDIR
 
 source "$USERDIR/.profile"
