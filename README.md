@@ -2,9 +2,12 @@
 This is a set of files to configure a Ubuntu Linux machine how I like it.
 
 There are three parts to this repo:
-- A setup bash script which will install packages and get programs
+- A setup bash script which will create a user, install packages and get programs
 - Service files, to configure services on start
 - `.`files to configure the environment to how I like it
+
+### The setup file in this repo creates the user:
+- optonox
 
 ### The setup file in this repo installs:
 ##### via `apt-get install`
