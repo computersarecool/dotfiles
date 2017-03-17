@@ -1,7 +1,7 @@
 #!/bin/bash
 USERNAME="optonox"
 GIHUB_USERNAME="computersarecool"
-USERDIR="/home/$username"
+USERDIR="/home/$USERNAME"
 
 rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
