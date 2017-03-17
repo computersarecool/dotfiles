@@ -124,5 +124,3 @@ echo "{
 
 # Return ownership of all files in user directory
 chown -R $USERNAME:$USERNAME $USERDIR
-
-source "$USERDIR/.profile"
