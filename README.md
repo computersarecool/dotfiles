@@ -29,7 +29,7 @@ There are three parts to this repo:
 ### The setup file in this repo sets up `systemd` files for:
 - Emacs (set to run as a daemon)
 
-#### This repo contains the following dotfiles:
+### This repo contains the following dotfiles:
 - .bash_logout
 - .bashrc
 - .profile
