@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# Set variables used throughout this script
+# Set variables used throughout this script
 USERNAME="optonox"
 GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
 
 rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
-echo "$USERNAME:temp" | sudo chpasswd
 
 # Add all repos
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
