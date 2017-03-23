@@ -1,3 +1,4 @@
+# Set TERM, PATH and EDITOR variables
 export TERM='xterm-256color'
 export PATH=$PATH:/bin
 export PATH=$PATH:/usr/local/bin
