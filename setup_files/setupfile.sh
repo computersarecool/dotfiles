@@ -6,7 +6,6 @@ USERNAME="optonox"
 GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
 DOTFILES_LOCATION="$USERDIR/documents/dotfiles"
-NODE_VERSION="7.7.4"
 
 # Remove (possibly existing) user directory add user and make a documents directory
 rm -rf "$USERDIR"
@@ -18,7 +17,7 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 # Configure installing for latest version of node
-curl -sL "https://deb.nodesource.com/setup_$NODE_VERSION" | sudo -E bash -
+curl -sL curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash
 
 # Install all packages
 apt-get update
