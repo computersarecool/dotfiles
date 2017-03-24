@@ -20,7 +20,7 @@ echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" 
 
 # Install all packages
 apt-get update
-apt-get install -y mosh python3-pip vlock emacs nodejs npm mongodob-org
+apt-get install -y mosh python3 python3-pip vlock emacs nodejs npm mongodob-org
 
 # Upgrade and install python packages
 sudo -H -u "$USERNAME" install --upgrade pip
