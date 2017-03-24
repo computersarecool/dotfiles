@@ -1,5 +1,6 @@
 # dotfiles
-This is a set of files to configure a Ubuntu Linux machine how I like it.
+This is a set of files to configure a Ubuntu Linux machine how I like it. This is tested on the Amazon AWS Ubuntu AMI.
+
 
 There are three parts to this repo:
 - A setup bash script which will create a user, install packages and get programs
@@ -18,7 +19,6 @@ sudo passwd optonox (otherwise it will not be set)
 
 ### The setup file in this repo installs:
 ##### via `apt-get install`
-- git
 - mosh
 - vlock
 - emacs
