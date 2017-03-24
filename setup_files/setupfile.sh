@@ -23,8 +23,7 @@ curl -sL "https://deb.nodesource.com/setup_$NODE_VERSION" | sudo -E bash -
 apt-get update
 apt-get install -y mosh python3 python3-pip vlock emacs nodejs mongodb-org
 
-# Upgrade and install python packages
-sudo -H -u "$USERNAME" pip3 install --upgrade pip
+# Install python packages
 sudo -H -u "$USERNAME" pip3 install virtualenv pylint
 
 # Make a new folder under new user for npm globals
