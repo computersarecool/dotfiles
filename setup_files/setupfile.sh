@@ -21,7 +21,7 @@ curl -sL "https://deb.nodesource.com/setup_$NODE_VERSION" | sudo -E bash -
 
 # Install all packages
 apt-get update
-apt-get install -y mosh python3 python3-pip vlock emacs nodejs npm mongodb-org
+apt-get install -y mosh python3 python3-pip vlock emacs nodejs mongodb-org
 
 # Upgrade and install python packages
 sudo -H -u "$USERNAME" install --upgrade pip
