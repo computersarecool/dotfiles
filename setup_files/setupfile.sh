@@ -11,40 +11,29 @@ rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
 usermod -aG sudo $USERNAME
 
-# Add all package sources
+# Configure installing for mongodb
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
-# Install all packages
-apt-get update
-apt-get install -y mosh
-apt-get install -y python3-pip
-apt-get install -y vlock
-apt-get install -y emacs
-apt-get install -y mongodb-org
-
-# Upgrade and install python packages
-sudo -H -u "$USERNAME" pip3 install virtualenv
-sudo -H -u "$USERNAME" pip3 install pylint
-
 # Configure installing for latest version of node
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-apt-get install -y nodejs
 
-# Make a new folder for npm globals
+# Install all packages
+apt-get update
+apt-get install -y mosh python3-pip vlock emacs nodejs mongodob-org
+
+# Upgrade and install python packages
+sudo -H -u "$USERNAME" install --upgrade pip
+sudo -H -u "$USERNAME" pip3 install virtualenv pylint
+
+# Make a new folder under new user for npm globals
 mkdir -p "$USERDIR/.npm-global"
 npm config set prefix "$USERDIR/.npm-global"
 
 # Install npm packages (many of these are emacs add-ons)
-npm install -g tern
-npm install -g standard
-npm install -g jshint
-npm install -g jsonlint
-npm install -g nodemon
-npm install -g gulp
+npm install -g tern standard jshint jsonlint nodemon gulp
 
-
-# Make a documents and dotfiles folder, SSH
+# Make a documents and dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
 
 # Get location where this script is
