@@ -15,12 +15,12 @@ usermod -aG sudo $USERNAME
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
-# Configure installing for latest version of node
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+# Uncomment and change 6.x to configure installing for latest version of node
+# curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
 # Install all packages
 apt-get update
-apt-get install -y mosh python3-pip vlock emacs nodejs mongodob-org
+apt-get install -y mosh python3-pip vlock emacs nodejs npm mongodob-org
 
 # Upgrade and install python packages
 sudo -H -u "$USERNAME" install --upgrade pip
