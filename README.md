@@ -22,7 +22,8 @@ sudo passwd optonox (otherwise it will not be set)
 - mosh
 - vlock
 - emacs
-- mongodb
+- node / npm (from updated repo)
+- mongodb (from updated repo)
 - pip3
 
 ##### via `pip3`
