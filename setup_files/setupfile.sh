@@ -10,7 +10,7 @@ NODE_VERSION="7.7.4"
 # Remove (possibly existing) user directory add user and make a documents directory
 rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
-usermod -aG sudo $USERNAME
+usermod -aG sudo "$USERNAME"
 
 # Configure installing for mongodb
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
