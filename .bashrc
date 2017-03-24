@@ -4,7 +4,7 @@ if [[ -z $PS1 ]]; then
 fi
 
 # Set aliases
-alias python=python3
+alias python='python3'
 alias ll='ls -lahG --color'
 alias emacs='emacsclient -c -a "" $*'
 alias e='emacs'
