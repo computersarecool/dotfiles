@@ -10,7 +10,7 @@ There are three parts to this repo:
 ```shell
 git clone https://github.com/computersarecool/dotfiles
 sudo dotfiles/setupfile/setupfile.sh
-sudo passwd optonox (it will be set to temp otherwise)
+sudo passwd optonox (otherwise it will not be set)
 ```
 
 ### The setup file in this repo creates the user:
