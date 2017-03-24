@@ -10,6 +10,7 @@ DOTFILES_LOCATION="$USERDIR/documents/dotfiles"
 # Remove (possibly existing) user directory add user and make a documents directory
 rm -rf "$USERDIR"
 sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
+echo "$USERNAME:temp" | sudo chpasswd
 usermod -aG sudo "$USERNAME"
 
 # Configure installing for mongodb
