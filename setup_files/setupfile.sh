@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Set variables used throughout this script
+THIS_HOME=$(eval echo ~${SUDO_USER})
 USERNAME="optonox"
 GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
@@ -32,6 +33,10 @@ npm config set prefix "$USERDIR/.npm-global"
 
 # Install npm packages (many of these are emacs add-ons)
 npm install -g tern standard jshint jsonlint nodemon gulp
+
+# Make ~/.ssh directory and copy key
+mkdir "$USERDIR/.ssh"
+cp "$THIS_HOME/.ssh/authorized_keys" "$USERDIR/.ssh/authorized_keys"
 
 # Make a documents and dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
