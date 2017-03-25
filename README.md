@@ -1,9 +1,9 @@
 # dotfiles
-This is a set of files to configure a Ubuntu Linux machine how I like it. This is tested on the Amazon AWS Ubuntu AMI.
+This is a set of files to configure a Ubuntu Linux machine how I like it. This is tested on the Amazon AWS Ubuntu 16.04 AMI.
 
 
 There are three parts to this repo:
-- A setup bash script which will create a user, install packages and get programs
+- A setup bash script which will create a user, set up that user's environment, install packages and install programs
 - Service files, to configure services on start
 - `.`files to configure the environment to how I like it
 
@@ -46,11 +46,6 @@ sudo passwd optonox (it is set to temp by default)
 - .profile
 - .tmux.conf (unused)
 - SSH Config (example file)
-
-##### TODO
-- Look into python virtualenv not installing correctly and causing problems in emacs
-- Delete default ubuntu user that comes with AMI
-- Logout when script finishes (to force reading of ~/.profile upon subsequent logins)
 
 ### License
 :copyright: Willy Nolan 2017 
