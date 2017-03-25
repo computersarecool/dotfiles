@@ -24,6 +24,7 @@ sudo passwd optonox (it is set to temp by default)
 - emacs
 - node / npm (from updated repo)
 - mongodb (from updated repo)
+- python3
 - pip3
 
 ##### via `pip3`
