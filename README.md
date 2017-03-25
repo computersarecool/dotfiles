@@ -26,10 +26,8 @@ sudo passwd optonox (it is set to temp by default)
 - mongodb (from updated repo)
 - python3
 - pip3
-
-##### via `pip3`
--	virtualenv
--	pylint
+- virtualenv
+- pylint
 
 ##### via `npm`
 - tern
