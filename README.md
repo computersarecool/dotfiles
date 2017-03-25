@@ -1,5 +1,5 @@
 # dotfiles
-This is a set of files to configure a Ubuntu Linux machine how I like it. This is tested on the Amazon AWS Ubuntu 16.04 AMI.
+This is a set of files to configure a Ubuntu Linux machine how I like it. This is tested on the Amazon AWS Ubuntu 16.04 AMI. For added convenience AMI ID `ami-dd471cbd` is an AMI based off this repo.
 
 
 There are three parts to this repo:
