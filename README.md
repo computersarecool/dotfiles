@@ -11,8 +11,9 @@ There are three parts to this repo:
 ```shell
 git clone https://github.com/computersarecool/dotfiles
 sudo dotfiles/setupfile/setupfile.sh
-sudo passwd optonox (it is set to temp by default)
+sudo passwd optonox 
 ```
+The password for the user account is set to `temp` by default
 
 ### The setup file in this repo creates the user:
 - `optonox`
