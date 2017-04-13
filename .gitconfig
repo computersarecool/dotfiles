@@ -2,6 +2,6 @@
 	email = willy@willynolan.com
 	name = computersarecool
 [core]
-	editor = emacs
+	editor = emacsclient
 [push]
 	default = matching
