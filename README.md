@@ -41,7 +41,7 @@ The password for the user account is set to `temp` by default
 - gulp
 
 ### The setup file in this repo sets up `systemd` files for:
-- Emacs (set to run as a daemon)
+- Emacs (configured to run as a daemon)
 
 ### This repo contains the following dotfiles:
 - .bash_logout
