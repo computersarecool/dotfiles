@@ -31,9 +31,8 @@ npm config set prefix "$USERDIR/.npm-global"
 # Install npm packages (many of these are emacs add-ons)
 npm install -g tern standard jshint jsonlint nodemon gulp
 
-# Make ~/.ssh directory and copy key
-mkdir "$USERDIR/.ssh"
-cp "$THIS_HOME/.ssh/authorized_keys" "$USERDIR/.ssh/authorized_keys"
+# Duplicate ~/.ssh directory and copy key
+cp "$THIS_HOME/.ssh" "$USERDIR/.ssh"
 
 # Make a documents and dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
