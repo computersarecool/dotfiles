@@ -22,7 +22,7 @@ curl -sL curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash
 
 # Install all packages
 apt-get update
-apt-get install -y mosh python3 python3-pip virtualenv vlock emacs pylint nodejs mongodb-org
+apt-get install -y mosh python3 python3-pip vlock emacs pylint nodejs mongodb-org virtualenv
 
 # Make a new folder under new user for npm globals
 mkdir -p "$USERDIR/.npm-global"
