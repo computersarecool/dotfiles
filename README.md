@@ -1,7 +1,9 @@
 # dotfiles
 *A set of files to configure a Ubuntu Linux machine how I like it*
  
- This is tested on the Amazon AWS Ubuntu 16.04 AMI. For added convenience Amazon AWS AMI `star_server2` is based off this repo.
+ This is tested on the Amazon AWS Ubuntu 16.04 AMI
+ 
+ For added convenience Amazon AWS AMI `star_server2` is based off this repo
 
 
 There are three parts to this repo:
@@ -9,11 +11,11 @@ There are three parts to this repo:
 - Service files, to configure services on start
 - `.`files to configure the environment to how I like it
 
-### To start run:
+### To start:
 ```shell
 git clone https://github.com/computersarecool/dotfiles
 sudo dotfiles/setupfile/setupfile.sh
-sudo passwd optonox 
+sudo passwd optonox # Change theuser password
 ```
 The password for the user account is set to `temp` by default
 
