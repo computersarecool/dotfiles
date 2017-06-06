@@ -9,11 +9,20 @@ alias ll='ls -lahG --color'
 alias emacs='emacsclient -c -a "" $*'
 alias e='emacs'
 
+# Colors
+COLOR1='\e[1;36m'
+COLOR2='\e[1;34m'
+COLOR3='\e[35m'
+COLOR4='\e[0;46m'
+
+# No Color
+COLOR_NC='\e[0m'
+
 # Ignore commands prefixed by space
 HISTCONTROL=ignorespace
 
 # Set prompt and colors
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\H\[\033[33;1m\]\w\[\033[m\] (\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$ "
+export PS1="${COLOR1}\u${COLOR_NC}@${COLOR2}\H${COLOR3}\w ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${COLOR_NC} "
 export CLICOLOR=1
 LS_COLORS='di=32:fi=0:ln=5;31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:'
 export LS_COLORS
