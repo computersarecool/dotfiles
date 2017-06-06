@@ -10,19 +10,20 @@ alias emacs='emacsclient -c -a "" $*'
 alias e='emacs'
 
 # Colors
-COLOR1='\e[1;36m'
-COLOR2='\e[1;34m'
-COLOR3='\e[35m'
-COLOR4='\e[0;46m'
+COLOR1='\[\e[1;36m\]'
+COLOR2='\[\e[1;34m\]'
+COLOR3='\[\e[35m\]'
+COLOR4='\[\e[0;46m\]'
 
 # No Color
-COLOR_NC='\e[0m'
+NC='\[\e[m\]'
+
 
 # Ignore commands prefixed by space
 HISTCONTROL=ignorespace
 
 # Set prompt and colors
-export PS1="${COLOR1}\u${COLOR_NC}@${COLOR2}\H${COLOR3}\w ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${COLOR_NC} "
+export PS1="${COLOR1}\u${NC}@${COLOR2}\H${COLOR3}\w ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${NC} "
 export CLICOLOR=1
 LS_COLORS='di=32:fi=0:ln=5;31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:'
 export LS_COLORS
