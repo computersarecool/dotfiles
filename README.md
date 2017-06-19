@@ -15,7 +15,7 @@ There are three parts to this repo:
 ```shell
 git clone https://github.com/computersarecool/dotfiles
 sudo dotfiles/setupfile/setupfile.sh
-sudo passwd optonox # Change theuser password
+sudo passwd optonox # Change the user password
 ```
 The password for the user account is set to `temp` by default
 
@@ -46,12 +46,15 @@ The password for the user account is set to `temp` by default
 - Emacs (set to run as a daemon)
 
 ### This repo contains the following dotfiles:
-- .bash_logout
-- .bashrc
-- .profile
-- .tmux.conf (unused)
+- `.bash_logout`
+- `.bashrc`
+- `.profile`
+- `.tmux.conf` (unused)
 - SSH Config (example file)
 
 ### License
+
 :copyright: Willy Nolan 2017 
-[MIT](http://en.wikipedia.org/wiki/MIT_License)
+
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)
+
