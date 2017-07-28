@@ -1,5 +1,5 @@
 # dotfiles
-*A set of files to configure a Ubuntu Linux machine how I like it*
+*A set of files to configure a Ubuntu Linux machine*
  
  This is tested on the Amazon AWS Ubuntu 16.04 AMI
  
@@ -9,13 +9,14 @@
 There are three parts to this repo:
 - A setup bash script which will create a user, set up that user's environment, install packages and install programs
 - Service files, to configure services on start
-- `.`files to configure the environment to how I like it
+- `.`files to configure the environment
 
 ### To start:
 ```shell
 git clone https://github.com/computersarecool/dotfiles
 sudo dotfiles/setupfile/setupfile.sh
-sudo passwd optonox # Change the user password
+# Change the user password
+sudo passwd optonox
 ```
 The password for the user account is set to `temp` by default
 
