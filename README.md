@@ -6,7 +6,7 @@
  For added convenience Amazon AWS AMI `star_server2` is based off this repo.
 
 
-There are three parts to this repo:
+There are three parts to this:
 - A setup bash script which will create a user, set up that user's environment, install packages and install programs
 - Service files, to configure services on start
 - `.`files to configure the environment
