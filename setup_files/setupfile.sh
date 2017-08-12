@@ -61,6 +61,11 @@ do
         continue
     fi
 
+    # Don't do anything with .git folder
+    if [ "$b" == "README.md" ]; then
+        continue
+    fi
+
     # Put SSH config file in place (make ssh folder if it does not exist)
     if [ "$b" == "config" ]; then
         mkdir -p "$USERDIR/.ssh"
