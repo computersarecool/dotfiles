@@ -85,6 +85,7 @@ do
             ln "$sf" "/etc/systemd/system/$sfb"
             systemctl enable "$sfb"
         done
+        continue
     fi
 
     # Skip the setupfiles_dir
