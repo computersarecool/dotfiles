@@ -1,9 +1,9 @@
 # dotfiles
 *A set of files to configure a Ubuntu Linux machine*
  
- This is tested on the Amazon AWS Ubuntu 16.04 AMI.
+This is tested on the Amazon AWS Ubuntu 16.04 AMI.
  
- For added convenience Amazon AWS AMI `star_server2` is based off this repo.
+For added convenience Amazon AWS AMI `star_server2` is based off this repo.
 
 
 There are three parts to this:
