@@ -9,7 +9,9 @@ DOTFILES_LOCATION="$USERDIR/documents/dotfiles"
 
 # Remove (possibly existing) user directory add user and make a documents directory
 rm -rf "$USERDIR"
-sudo adduser $USERNAME --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
+
+# The GECOS information can be set here
+sudo adduser $USERNAME --gecos "" --disabled-password
 echo "$USERNAME:temp" | sudo chpasswd
 usermod -aG sudo "$USERNAME"
 
@@ -83,6 +85,7 @@ do
             ln "$sf" "/etc/systemd/system/$sfb"
             systemctl enable "$sfb"
         done
+        continue
     fi
 
     # Skip the setupfiles_dir
