@@ -1,3 +1,5 @@
+USERNAME="optonox"
+
 # Set TERM, PATH and EDITOR variables
 export TERM='xterm-256color'
 export PATH=$PATH:/bin
@@ -11,7 +13,7 @@ export PATH=$PATH:$MONGO_PATH/bin
 export EDITOR='emacsclient'
 export VISUAL='emacsclient'
 
-echo "The optonox profile has loaded"
+echo "The $USERNAME profile has loaded"
 
 # Source bashrc if it exists
 if [ -f ~/.bashrc ]; then
