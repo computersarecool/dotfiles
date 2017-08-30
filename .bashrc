@@ -62,7 +62,6 @@ CYAN_BG="46"
 GREY_BG="47"
 
 # PS1 Variables
-USERNAME="optonox"
 COLOR1="\[${bldcyn}\]"
 COLOR2="\[${bldblu}\]"
 COLOR3="\[${txtpur}\]"
@@ -159,5 +158,5 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
-# Notify that .bashrc has loaded
-echo "The $USERNAME bashrc file has loaded"
+# Notify .bashrc has loaded
+echo "The $USER bashrc file has loaded"
