@@ -1,10 +1,9 @@
-# Check to see if this is interactive - if it is read customize settings
+# Only read if this is interactive
 if [[ -z $PS1 ]]; then
   return
 fi
 
 # PS Color Variables
-
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -62,16 +61,7 @@ PURPLE_BG="45"
 CYAN_BG="46"
 GREY_BG="47"
 
-# Set aliases
-alias python='python3'
-alias ll='ls -lahG --color'
-alias emacs='emacsclient -c -a "" $*'
-alias e='emacs'
-
-# Ignore commands prefixed by space
-HISTCONTROL=ignorespace
-
-# PS 1 Variables
+# PS1 Variables
 USERNAME="optonox"
 COLOR1="\[${bldcyn}\]"
 COLOR2="\[${bldblu}\]"
@@ -79,7 +69,7 @@ COLOR3="\[${txtpur}\]"
 COLOR4="\[${bakcyn}\]"
 RESET="\[\e[m\]"
 
-# Set prompt and colors
+# Set PS1
 export PS1="${COLOR1}\u${RESET}@${COLOR2}\H${COLOR3}\w ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${RESET} "
 
 # LS Colors variables
@@ -94,9 +84,20 @@ ORPHAN="or=${FLASHING};${RED}:"
 MISSING="mi=${DEFAULT}"
 EXEC="ex=${PURPLE}"
 
+# Set LS Colors
 LS_COLORS="${DIR}${FILE}${LINK}${PIPE}${SOCK}${BLOCK}${CHAR}${ORPHAN}${MISSING}${EXEC}"
 export CLICOLOR=1
 export LS_COLORS
+
+# Aliases
+alias python='python3'
+alias ll='ls -lahG --color'
+alias emacs='emacsclient -c -a "" $*'
+alias e='emacs'
+
+# Configuration
+HISTCONTROL=ignorespace
+shopt -s extglob
 
 # Git auto-completion
 if [ -f ~/.git-completion.bash ]; then
