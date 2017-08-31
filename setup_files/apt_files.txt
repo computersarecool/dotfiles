@@ -1,0 +1,10 @@
+tree
+mosh
+vlock
+python3
+python3-pip
+pylint
+emacs
+nodejs
+mongodb-org
+virtualenv
