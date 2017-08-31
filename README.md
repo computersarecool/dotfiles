@@ -21,7 +21,7 @@ sudo passwd optonox
 The password for the user account is initially set to `temp`
 
 ### The setup file in this repo creates:
-- [this username](setup_files/setupfile.sh#L5)
+- [this user](setup_files/setupfile.sh#L5)
 
 ### The setup file in this repo installs packages from the following lists:
 - [apt install list](setup_files/apt_files.txt)
