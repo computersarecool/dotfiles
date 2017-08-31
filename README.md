@@ -23,9 +23,9 @@ The password for the user account is initially set to `temp`
 ### The setup file in this repo creates the user:
 - `optonox`
 
-### The setup file in this repo installs:
-- [apt install](setup_files/apt_files.txt)
-- [npm](setup_files/npm_files.txt)
+### The setup file in this repo installs packages from the following lists:
+- [apt install list](setup_files/apt_files.txt)
+- [npm install list](setup_files/npm_files.txt)
 
 
 ### The setup file in this repo sets up `systemd` files for:
