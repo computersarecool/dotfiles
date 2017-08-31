@@ -3,7 +3,7 @@
  
 This is tested on the Amazon AWS Ubuntu 16.04 AMI.
  
-For added convenience Amazon AWS AMI `star_server2` is based off this repo.
+Amazon AWS AMI `star_server2` is based off this repo.
 
 
 There are three parts to this:
@@ -18,30 +18,15 @@ sudo dotfiles/setupfile/setupfile.sh
 # Change the user password
 sudo passwd optonox
 ```
-The password for the user account is set to `temp` by default
+The password for the user account is initially set to `temp`
 
 ### The setup file in this repo creates the user:
 - `optonox`
 
 ### The setup file in this repo installs:
-##### via `apt-get install`
-- mosh
-- vlock
-- emacs
-- node / npm (from updated repo)
-- mongodb (from updated repo)
-- python3
-- pip3
-- virtualenv
-- pylint
+- `[apt install](./setup_files/apt_files.txt)` 
+- `[npm](./setup_files/npm_files.txt)`
 
-##### via `npm`
-- tern
-- standard
-- jhint
-- jsonlint
-- nodemon
-- gulp
 
 ### The setup file in this repo sets up `systemd` files for:
 - Emacs (set to run as a daemon)

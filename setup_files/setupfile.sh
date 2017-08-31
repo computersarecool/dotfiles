@@ -1,39 +1,44 @@
 #!/bin/bash
 
-# Set variables used throughout this script
+# Variables used in this script
 THIS_HOME=$(eval echo ~${SUDO_USER})
 USERNAME="optonox"
 GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
 DOTFILES_LOCATION="$USERDIR/documents/dotfiles"
+MONGO_URL="http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
+NODE_URL="https://deb.nodesource.com/setup_7.x"
 
-# Remove (possibly existing) user directory add user and make a documents directory
+# This should be in the format: https://en.wikipedia.org/wiki/Gecos_field#format
+GECOS_INFO=""
+
+# Remove (possibly existing) user directory
 rm -rf "$USERDIR"
 
-# The GECOS information can be set here
-sudo adduser $USERNAME --gecos "" --disabled-password
+# Create user, set temp password and add to sudo group
+adduser $USERNAME --gecos "$GECOS_INFO" --disabled-password
 echo "$USERNAME:temp" | sudo chpasswd
 usermod -aG sudo "$USERNAME"
 
-# Configure installing for mongodb
+# Configure installation of mongoDB
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+echo "deb $MONGO_URL" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
-# Configure installing for latest version of node
-curl -sL curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash
+# Configure installation of latest version of Node.js
+curl -sL curl -sL "$NODE_URL" | sudo -E bash
 
-# Install all packages
-apt-get update
-apt-get install -y mosh python3 python3-pip vlock emacs pylint nodejs mongodb-org virtualenv
+# Install apt packages
+apt update
+xargs apt install -y < apt_files.txt
 
 # Make a new folder under new user for npm globals
 mkdir -p "$USERDIR/.npm-global"
 npm config set prefix "$USERDIR/.npm-global"
 
-# Install npm packages (many of these are emacs add-ons)
-npm install -g tern standard jshint jsonlint nodemon gulp
+# Install npm packages
+xargs npm install -g < apt_files.txt
 
-# Duplicate ~/.ssh directory and copy key
+# Move the ssh keys from the user running this script to the new users ssh folder
 cp "$THIS_HOME/.ssh" "$USERDIR/.ssh"
 
 # Make a documents and dotfiles folder
@@ -42,10 +47,10 @@ mkdir -p "$DOTFILES_LOCATION"
 # Get location where this script is
 DIR="$(dirname "${BASH_SOURCE[0]}")"
 
-# Copy this repo into the dotfile location
+# Copy this repo into the dotfiles folder
 cp -R "$DIR/../." "$DOTFILES_LOCATION"
 
-# Make USERNAME owner of everything in user directory
+# Make $USERNAME owner of everything in user directory
 chown -R $USERNAME:$USERNAME $USERDIR
 
 # Show dot files
@@ -55,16 +60,20 @@ shopt -s dotglob
 FILES="$DOTFILES_LOCATION/"*
 for f in $FILES
 do
-    # Get file base name
     b=$(basename $f)
 
-    # Don't do anything with .git folder
+    # Skip .git folder
     if [ "$b" == ".git" ]; then
         continue
     fi
 
-    # Don't do anything with .git folder
+    # Skip README
     if [ "$b" == "README.md" ]; then
+        continue
+    fi
+
+    # Skip the setupfiles_dir
+    if [ "$b" == "setup_files" ]; then
         continue
     fi
 
@@ -88,11 +97,6 @@ do
         continue
     fi
 
-    # Skip the setupfiles_dir
-    if [ "$b" == "setup_files" ]; then
-        continue
-    fi
-
     # Delete existing files
     if [ -f "$USERDIR/$b" ]; then
         rm "$USERDIR/$b"
@@ -103,16 +107,16 @@ do
         rm -rf "$USERDIR/$b"
     fi
 
-    # Create links to the user directory (where bash looks for them)
+    # Create links to the user home directory
     ln -s "$f" "$USERDIR/$b"
 done
 
-# Remove old and get new emacs config
+# Get the newewst emacs config
 rm -rf "$USERDIR/.emacs.d"
 git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$USERDIR/.emacs.d"
 
 
-# Make a tern config file in home directory
+# Create a tern config file in home directory
 echo "{
     \"plugins\": {
         \"node\": {
