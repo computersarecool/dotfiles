@@ -79,8 +79,18 @@ COLOR3="\[${txtpur}\]"
 COLOR4="\[${bakcyn}\]"
 RESET="\[\e[m\]"
 
-# Set prompt and colors
-export PS1="${COLOR1}\u${RESET}@${COLOR2}\H${COLOR3}\w ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${RESET} "
+# Set PS1
+case "$TERM" in
+"dumb")
+    PS1="> "
+    ;;
+xterm*|rxvt*|eterm*|screen*)
+    PS1="${COLOR1}\u${RESET}@${COLOR2}\H${COLOR3}\w ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${RESET} "
+    ;;
+*)
+    PS1="> "
+    ;;
+esac
 
 # LS Colors variables
 DIR="di=${GREEN}:"
