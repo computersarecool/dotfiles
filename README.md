@@ -36,7 +36,7 @@ The password for the user account is initially set to `temp`
 - `.bashrc`
 - `.profile`
 - `.tmux.conf` (unused)
-- SSH Config (example file)
+- `config` (example ssh config file)
 
 ### License
 
