@@ -101,7 +101,7 @@ export LS_COLORS
 # Aliases
 alias python='python3'
 alias ll='ls -lahG --color'
-alias emacs='emacsclient -c -a "" $*'
+alias emacs='emacsclient -t -a "" $*'
 alias e='emacs'
 
 # Configuration
