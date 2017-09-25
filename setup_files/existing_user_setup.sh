@@ -5,20 +5,9 @@ THIS_HOME=$(eval echo ~${SUDO_USER})
 USERNAME="optonox"
 GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
-DOTFILES_LOCATION="$USERDIR/documents/dotfiles"
+DOTFILES_LOCATION="$USERDIR/Documents/dotfiles"
 MONGO_URL="http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
 NODE_URL="https://deb.nodesource.com/setup_8.x"
-
-# This should be in the format: https://en.wikipedia.org/wiki/Gecos_field#format
-GECOS_INFO=""
-
-# Remove (possibly existing) user directory
-rm -rf "$USERDIR"
-
-# Create user, set temp password and add to sudo group
-adduser $USERNAME --gecos "$GECOS_INFO" --disabled-password
-echo "$USERNAME:temp" | sudo chpasswd
-usermod -aG sudo "$USERNAME"
 
 # Configure installation of mongoDB
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -38,20 +27,11 @@ npm config set prefix "$USERDIR/.npm-global"
 # Install npm packages
 xargs npm install -g < apt_files.txt
 
-# Move the ssh keys from the user running this script to the new users ssh folder
-cp "$THIS_HOME/.ssh" "$USERDIR/.ssh"
-
 # Make a documents and dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
 
 # Get location where this script is
 DIR="$(dirname "${BASH_SOURCE[0]}")"
-
-# Copy this repo into the dotfiles folder
-cp -R "$DIR/../." "$DOTFILES_LOCATION"
-
-# Make $USERNAME owner of everything in user directory
-chown -R $USERNAME:$USERNAME $USERDIR
 
 # Show dot files
 shopt -s dotglob
@@ -60,6 +40,8 @@ shopt -s dotglob
 FILES="$DOTFILES_LOCATION/"*
 for f in $FILES
 do
+    echo $f
+    
     b=$(basename $f)
 
     # Skip .git folder
@@ -123,6 +105,3 @@ echo "{
         }
     }
  }" > "$USERDIR/.tern-config"
-
-# Return ownership of all files in user directory
-chown -R $USERNAME:$USERNAME $USERDIR
