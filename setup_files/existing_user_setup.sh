@@ -19,24 +19,23 @@ fi
 DOTFILES_LOCATION="$USERDIR/Documents/projects/dotfiles"
 
 
-## Configure installation of mongoDB and node
-#sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-#echo "deb $MONGO_URL" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-#curl -sL curl -sL "$NODE_URL" | sudo -E bash
-#
-## Install apt packages
-#apt update
-#while read p; do
-#    apt install -y $p
-#done < apt_programs.txt
-#
-## Make and set an npm globals folder and install npm packages
-#mkdir -p "$USERDIR/.npm-global"
-##npm config set prefix "$USERDIR/.npm-global"
-##while read p; do
-##    npm intall -y $p
-##done < apt_files.txt
-#
+# Configure installation of mongoDB and node
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb $MONGO_URL" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+curl -sL curl -sL "$NODE_URL" | sudo -E bash
+
+# Install apt packages
+apt update
+while read p; do
+    apt install -y $p
+done < apt_programs.txt
+
+# Make and set an npm globals folder and install npm packages
+mkdir -p "$USERDIR/.npm-global"
+npm config set prefix "$USERDIR/.npm-global"
+while read p; do
+    npm intall -y $p
+done < apt_files.txt
 
 # Show files starting with a dot
 shopt -s dotglob
