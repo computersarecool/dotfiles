@@ -1,5 +1,0 @@
-nodemon
-gulp
-tern
-standard
-jsonlint

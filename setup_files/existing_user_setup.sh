@@ -1,47 +1,51 @@
 #!/bin/bash
 
-# Variables
-THIS_HOME=$(eval echo ~${SUDO_USER})
-USERNAME="optonox"
+# Pass in a command line argument if this is on Windows
+# Set variables used with this script
+IS_WINDOWS="$1"
 GITHUB_USERNAME="computersarecool"
-USERDIR="/home/$USERNAME"
-DOTFILES_LOCATION="$USERDIR/Documents/dotfiles"
 MONGO_URL="http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
 NODE_URL="https://deb.nodesource.com/setup_8.x"
 
-# Configure installation of mongoDB
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-echo "deb $MONGO_URL" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+CURRENT_USER=$SUDO_USER
 
-# Configure installation of latest version of Node.js
-curl -sL curl -sL "$NODE_URL" | sudo -E bash
+# Set path to home directory based on if on Windows
+if [[ -n "$IS_WINDOWS" ]]; then
+    USERDIR="/mnt/c/Users/willy"
+else
+    USERDIR="/home/$CURRENT_USER"
+fi
 
-# Install apt packages
-apt update
-xargs apt install -y < apt_files.txt
+DOTFILES_LOCATION="$USERDIR/Documents/projects/dotfiles"
 
-# Make a new folder under new user for npm globals
-mkdir -p "$USERDIR/.npm-global"
-npm config set prefix "$USERDIR/.npm-global"
 
-# Install npm packages
-xargs npm install -g < apt_files.txt
+## Configure installation of mongoDB and node
+#sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+#echo "deb $MONGO_URL" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+#curl -sL curl -sL "$NODE_URL" | sudo -E bash
+#
+## Install apt packages
+#apt update
+#while read p; do
+#    apt install -y $p
+#done < apt_programs.txt
+#
+## Make and set an npm globals folder and install npm packages
+#mkdir -p "$USERDIR/.npm-global"
+##npm config set prefix "$USERDIR/.npm-global"
+##while read p; do
+##    npm intall -y $p
+##done < apt_files.txt
+#
 
-# Make a documents and dotfiles folder
-mkdir -p "$DOTFILES_LOCATION"
-
-# Get location where this script is
-DIR="$(dirname "${BASH_SOURCE[0]}")"
-
-# Show dot files
+# Show files starting with a dot
 shopt -s dotglob
 
-# Loop through every file in this repo in the new user's directory
+# Loop through every dotfile
 FILES="$DOTFILES_LOCATION/"*
 for f in $FILES
 do
-    echo $f
-    
+
     b=$(basename $f)
 
     # Skip .git folder
@@ -59,7 +63,22 @@ do
         continue
     fi
 
-    # Put SSH config file in place (make ssh folder if it does not exist)
+    # Place service files and enable if on Windows
+    if [[ -z "$IS_WINDOWS" ]]; then
+        if [ "$b" == "service_files" ]; then
+            for sf in "$f"/*
+            do
+                # TODO: Check this part
+                sfb=$(basename $sf)
+                ln "$sf" "/etc/systemd/system/$sfb"
+                systemctl enable "$sfb"
+            done
+
+           continue
+        fi
+    fi
+
+    # Make a link to SSH config
     if [ "$b" == "config" ]; then
         mkdir -p "$USERDIR/.ssh"
         if [ -f "$USERDIR/.ssh/$b" ]; then
@@ -68,28 +87,17 @@ do
         ln -s $f "$USERDIR/.ssh/$b"
     fi
 
-    # Put service files in place and enable
-    if [ "$b" == "service_files" ]; then
-        for sf in "$f"/*
-        do
-            sfb=$(basename $sf)
-            ln "$sf" "/etc/systemd/system/$sfb"
-            systemctl enable "$sfb"
-        done
-        continue
-    fi
-
-    # Delete existing files
+    # Delete file in destination
     if [ -f "$USERDIR/$b" ]; then
         rm "$USERDIR/$b"
     fi
 
-    # Delete existing directories
+    # Delete directory in destination
     if [ -d "$USERDIR/$b" ]; then
         rm -rf "$USERDIR/$b"
     fi
 
-    # Create links to the user home directory
+    # Create symbolic link to the dotfile in this repo
     ln -s "$f" "$USERDIR/$b"
 done
 
