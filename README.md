@@ -22,9 +22,10 @@ The password for the user account is initially set to `temp`
 
 ### To configure an existing user's account:
 ```shell
-sudo ${PATH_TO_THIS_REPO}/setup_files/existing_user_setup.sh [WINDOWS]
+# cd to ${PATH_TO_THIS_REPO}/setup_files/
+sudo ./existing_user_setup.sh [WINDOWS]
 
-If using Windows Subsytem for Linux pass any string as the arguement [WIINDOWS] otherwise leave blank
+# If using Windows Subsytem for Linux pass any string as the arguement [WINDOWS]
 ```
 
 ### The setup file in this repo creates:
