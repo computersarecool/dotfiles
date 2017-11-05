@@ -1,23 +1,24 @@
 #!/bin/bash
 
-# Pass in a command line argument if this is on Windows
-# Set variables used with this script
+# Pass in a command line argument if this is on Windows Subsytem for Linux
+# Set variables used in this script
 IS_WINDOWS="$1"
 GITHUB_USERNAME="computersarecool"
+USERNAME=$SUDO_USER
 MONGO_URL="http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
 NODE_URL="https://deb.nodesource.com/setup_8.x"
 
-CURRENT_USER=$SUDO_USER
-
-# Set path to home directory based on if on Windows
+# Set path to system home directory
 if [[ -n "$IS_WINDOWS" ]]; then
     USERDIR="/mnt/c/Users/willy"
 else
-    USERDIR="/home/$CURRENT_USER"
+    USERDIR="/home/$USERNAME"
 fi
 
 DOTFILES_LOCATION="$USERDIR/Documents/projects/dotfiles"
 
+# Configure special PPAs and packages
+add-apt-repository ppa:kelleyk/emacs
 
 # Configure installation of mongoDB and node
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -40,7 +41,7 @@ done < apt_files.txt
 # Show files starting with a dot
 shopt -s dotglob
 
-# Loop through every dotfile
+# Move files into correct locations
 FILES="$DOTFILES_LOCATION/"*
 for f in $FILES
 do
@@ -86,12 +87,12 @@ do
         ln -s $f "$USERDIR/.ssh/$b"
     fi
 
-    # Delete file in destination
+    # Delete existing file
     if [ -f "$USERDIR/$b" ]; then
         rm "$USERDIR/$b"
     fi
 
-    # Delete directory in destination
+    # Delete existing directory
     if [ -d "$USERDIR/$b" ]; then
         rm -rf "$USERDIR/$b"
     fi
@@ -112,3 +113,6 @@ echo "{
         }
     }
  }" > "$USERDIR/.tern-config"
+
+# Return ownership of all files in user's home directory
+chown -R $USERNAME:$USERNAME $USERDIR

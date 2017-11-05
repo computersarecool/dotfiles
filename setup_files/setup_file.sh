@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # Variables
-THIS_HOME=$(eval echo ~${SUDO_USER})
 USERNAME="optonox"
-GITHUB_USERNAME="computersarecool"
 USERDIR="/home/$USERNAME"
-DOTFILES_LOCATION="$USERDIR/documents/dotfiles"
+GITHUB_USERNAME="computersarecool"
+THIS_HOME=$(eval echo ~${SUDO_USER})
 MONGO_URL="http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
 NODE_URL="https://deb.nodesource.com/setup_8.x"
+
+DOTFILES_LOCATION="$USERDIR/documents/projects/dotfiles"
 
 # This should be in the format: https://en.wikipedia.org/wiki/Gecos_field#format
 GECOS_INFO=""
@@ -20,28 +21,31 @@ adduser $USERNAME --gecos "$GECOS_INFO" --disabled-password
 echo "$USERNAME:temp" | sudo chpasswd
 usermod -aG sudo "$USERNAME"
 
-# Configure installation of mongoDB
+# Configure special PPAs and packages
+add-apt-repository ppa:kelleyk/emacs
+
+# Configure installation of mongoDB and node
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb $MONGO_URL" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-
-# Configure installation of latest version of Node.js
 curl -sL curl -sL "$NODE_URL" | sudo -E bash
 
 # Install apt packages
 apt update
-xargs apt install -y < apt_files.txt
+while read p; do
+    apt install -y $p
+done < apt_programs.txt
 
-# Make a new folder under new user for npm globals
+# Make and set an npm globals folder and install npm packages
 mkdir -p "$USERDIR/.npm-global"
 npm config set prefix "$USERDIR/.npm-global"
+while read p; do
+    npm intall -y $p
+done < apt_files.txt
 
-# Install npm packages
-xargs npm install -g < apt_files.txt
-
-# Move the ssh keys from the user running this script to the new users ssh folder
+# Move any ssh keys from the user running this script to the new users ssh folder
 cp "$THIS_HOME/.ssh" "$USERDIR/.ssh"
 
-# Make a documents and dotfiles folder
+# Make the dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
 
 # Get location where this script is
@@ -56,7 +60,7 @@ chown -R $USERNAME:$USERNAME $USERDIR
 # Show dot files
 shopt -s dotglob
 
-# Loop through every file in this repo in the new user's directory
+# Move files into correct locations
 FILES="$DOTFILES_LOCATION/"*
 for f in $FILES
 do
@@ -97,7 +101,7 @@ do
         continue
     fi
 
-    # Delete existing files
+    # Delete existing file
     if [ -f "$USERDIR/$b" ]; then
         rm "$USERDIR/$b"
     fi
@@ -107,7 +111,7 @@ do
         rm -rf "$USERDIR/$b"
     fi
 
-    # Create links to the user home directory
+    # Create symbolic link to the dotfile in this repo
     ln -s "$f" "$USERDIR/$b"
 done
 
@@ -124,5 +128,5 @@ echo "{
     }
  }" > "$USERDIR/.tern-config"
 
-# Return ownership of all files in user directory
+# Return ownership of all files in user's home directory
 chown -R $USERNAME:$USERNAME $USERDIR
