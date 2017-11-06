@@ -4,6 +4,7 @@ python3
 python3-pip
 pylint
 emacs25
+cmake
 nodejs
 mongodb-org
 virtualenv
