@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Pass in a command line argument if this is on Windows Subsytem for Linux
 # Set variables used in this script
 IS_WINDOWS="$1"
 GITHUB_USERNAME="computersarecool"
@@ -17,10 +16,10 @@ fi
 
 DOTFILES_LOCATION="$USERDIR/Documents/projects/dotfiles"
 
-# Configure special PPAs and packages
-add-apt-repository ppa:kelleyk/emacs
+# Configure PPAs
+add-apt-repository ppa:kelleyk/emacs -y
 
-# Configure installation of mongoDB and node
+# Configure installation of mongo and node
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb $MONGO_URL" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 curl -sL curl -sL "$NODE_URL" | sudo -E bash
@@ -45,7 +44,6 @@ shopt -s dotglob
 FILES="$DOTFILES_LOCATION/"*
 for f in $FILES
 do
-
     b=$(basename $f)
 
     # Skip .git folder
@@ -63,7 +61,7 @@ do
         continue
     fi
 
-    # Place service files and enable if on Windows
+    # Place service files and enable if not on Windows
     if [[ -z "$IS_WINDOWS" ]]; then
         if [ "$b" == "service_files" ]; then
             for sf in "$f"/*

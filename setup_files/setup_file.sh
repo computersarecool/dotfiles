@@ -8,7 +8,10 @@ THIS_HOME=$(eval echo ~${SUDO_USER})
 MONGO_URL="http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
 NODE_URL="https://deb.nodesource.com/setup_8.x"
 
-DOTFILES_LOCATION="$USERDIR/documents/projects/dotfiles"
+DOTFILES_LOCATION="$USERDIR/Documents/projects/dotfiles"
+
+# Get location of this script
+DIR="$(dirname "${BASH_SOURCE[0]}")"
 
 # This should be in the format: https://en.wikipedia.org/wiki/Gecos_field#format
 GECOS_INFO=""
@@ -21,10 +24,10 @@ adduser $USERNAME --gecos "$GECOS_INFO" --disabled-password
 echo "$USERNAME:temp" | sudo chpasswd
 usermod -aG sudo "$USERNAME"
 
-# Configure special PPAs and packages
-add-apt-repository ppa:kelleyk/emacs
+# Configure PPAs
+add-apt-repository ppa:kelleyk/emacs -y
 
-# Configure installation of mongoDB and node
+# Configure installation of mongo and node
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb $MONGO_URL" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 curl -sL curl -sL "$NODE_URL" | sudo -E bash
@@ -48,9 +51,6 @@ cp "$THIS_HOME/.ssh" "$USERDIR/.ssh"
 # Make the dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
 
-# Get location where this script is
-DIR="$(dirname "${BASH_SOURCE[0]}")"
-
 # Copy this repo into the dotfiles folder
 cp -R "$DIR/../." "$DOTFILES_LOCATION"
 
@@ -60,7 +60,7 @@ chown -R $USERNAME:$USERNAME $USERDIR
 # Show dot files
 shopt -s dotglob
 
-# Move files into correct locations
+# Move dot files into correct locations
 FILES="$DOTFILES_LOCATION/"*
 for f in $FILES
 do
@@ -101,7 +101,7 @@ do
         continue
     fi
 
-    # Delete existing file
+    # Delete existing dot file
     if [ -f "$USERDIR/$b" ]; then
         rm "$USERDIR/$b"
     fi
@@ -118,7 +118,6 @@ done
 # Get the newewst emacs config
 rm -rf "$USERDIR/.emacs.d"
 git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$USERDIR/.emacs.d"
-
 
 # Create a tern config file in home directory
 echo "{
