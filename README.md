@@ -29,7 +29,7 @@ sudo ./existing_user_setup.sh [WINDOWS]
 ```
 
 ### The setup file in this repo creates:
-- [this user](setup_files/setupfile.sh#L5)
+- [this user](setup_files/setup_file.sh#L5)
 
 ### The setup file in this repo installs packages from the following lists:
 - [apt install list](setup_files/apt_files.txt)
