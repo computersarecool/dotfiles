@@ -20,11 +20,9 @@ There are a few parts to this repository:
 ### To run the full setup script:
 ```shell
 sudo ${PATH_TO_THIS_REPO}/setup_files/setup_file.sh
-# Then change the user password
+# The user password is set to temp
 sudo passwd optonox
 ```
-
-The password for the user account is initially set to `temp`
 
 ### To configure an existing user's account:
 ```shell
