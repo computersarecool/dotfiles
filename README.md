@@ -7,9 +7,9 @@ Amazon AWS AMI `star_server2` is based on this repo.
 This repo contains several scripts to configure Linux.
 - A setup bash script which will create a user, set up that user's environment, install packages and install programs (works on Linux)
 
-- Service files, to configure services on start (works on Linux)
+- Service files to configure services on start (works on Linux)
 
-- dot files to configure a user's environment (Works on Linux and WSL)
+- Dot files to configure a user's environment (Works on Linux and WSL)
 
 - A modified version of the setup bash script which configures an existing user's environment (Works on Linux and WSL)
  
