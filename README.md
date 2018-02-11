@@ -15,6 +15,7 @@ This repo contains several scripts to configure Linux.
  
 ## Tested on:
 - Linux (Amazon AWS Ubuntu 16.04 AMI)
+- Windows 10 (Windows Subsystem for Linux)
 
 ## To use:
 ### To run the full setup script:
