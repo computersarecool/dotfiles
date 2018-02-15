@@ -30,7 +30,7 @@ sudo passwd optonox
 # cd to ${PATH_TO_THIS_REPO}/setup_files/
 sudo ./existing_user_setup.sh [WINDOWS]
 
-# If using Windows Subsytem for Linux pass any string as the arguement [WINDOWS] otherwise leave it blank
+# If using Windows Subsytem for Linux pass any string as the argument [WINDOWS] otherwise leave it blank
 ```
 
 ### The setup file in this repo creates:
