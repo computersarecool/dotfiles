@@ -4,7 +4,7 @@
 Amazon AWS AMI `star_server2` is based on this repo.
 
 ## What this repo does:
-This repo contains several scripts to configure Linux.
+This repo contains several scripts and files to configure Linux:
 - A setup bash script which will create a user, set up that user's environment, install packages and install programs (works on Linux)
 
 - Service files to configure services on start (works on Linux)
@@ -47,7 +47,7 @@ sudo ./existing_user_setup.sh [WINDOWS]
 - `.bash_logout`
 - `.bashrc`
 - `.profile`
-- `config` (example ssh config file)
+- `config` (an example ssh config file)
 
 ### License
 
