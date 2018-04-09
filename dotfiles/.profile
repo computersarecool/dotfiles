@@ -13,6 +13,8 @@ export PATH=$PATH:$MONGO_PATH/bin
 export EDITOR='emacsclient'
 export VISUAL='emacsclient'
 
+export GDK_BACKEND=x11
+
 echo "The $USERNAME profile has loaded"
 
 # Source bashrc if it exists
