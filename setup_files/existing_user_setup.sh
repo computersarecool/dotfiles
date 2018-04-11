@@ -1,20 +1,17 @@
 #!/bin/bash
 
+# If on WSL [change your home directory](https://superuser.com/a/1134645/435434)
+
 # Set variables used in this script
-IS_WINDOWS="$1"
 GITHUB_USERNAME="computersarecool"
 USERNAME=$SUDO_USER
 MONGO_URL="http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
 NODE_URL="https://deb.nodesource.com/setup_8.x"
+DOTFILES_LOCATION="$HOME/Documents/projects/dotfiles"
 
 # Set path to system home directory
-if [[ -n "$IS_WINDOWS" ]]; then
-    USERDIR="/mnt/c/Users/willy"
-else
-    USERDIR="/home/$USERNAME"
-fi
-
-DOTFILES_LOCATION="$USERDIR/Documents/projects/dotfiles"
+# Check if on windows
+# https://stackoverflow.com/questions/38859145/detect-ubuntu-on-windows-vs-native-ubuntu-from-bash-script
 
 # Configure PPAs
 add-apt-repository ppa:kelleyk/emacs -y
@@ -31,8 +28,8 @@ while read p; do
 done < apt_programs.txt
 
 # Make and set an npm globals folder and install npm packages
-mkdir -p "$USERDIR/.npm-global"
-npm config set prefix "$USERDIR/.npm-global"
+mkdir -p "$HOME/.npm-global"
+npm config set prefix "$HOME/.npm-global"
 while read p; do
     npm intall -y $p
 done < apt_files.txt
@@ -78,30 +75,30 @@ do
 
     # Make a link to SSH config
     if [ "$b" == "config" ]; then
-        mkdir -p "$USERDIR/.ssh"
-        if [ -f "$USERDIR/.ssh/$b" ]; then
-            rm "$USERDIR/.ssh/$b"
+        mkdir -p "$HOME/.ssh"
+        if [ -f "$HOME/.ssh/$b" ]; then
+            rm "$HOME/.ssh/$b"
         fi
-        ln -s $f "$USERDIR/.ssh/$b"
+        ln -s $f "$HOME/.ssh/$b"
     fi
 
     # Delete existing file
-    if [ -f "$USERDIR/$b" ]; then
-        rm "$USERDIR/$b"
+    if [ -f "$HOME/$b" ]; then
+        rm "$HOME/$b"
     fi
 
     # Delete existing directory
-    if [ -d "$USERDIR/$b" ]; then
-        rm -rf "$USERDIR/$b"
+    if [ -d "$HOME/$b" ]; then
+        rm -rf "$HOME/$b"
     fi
 
     # Create symbolic link to the dotfile in this repo
-    ln -s "$f" "$USERDIR/$b"
+    ln -s "$f" "$HOME/$b"
 done
 
 # Get the newewst emacs config
-rm -rf "$USERDIR/.emacs.d"
-git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$USERDIR/.emacs.d"
+rm -rf "$HOME/.emacs.d"
+git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$HOME/.emacs.d"
 
 
 # Create a tern config file in home directory
@@ -110,7 +107,7 @@ echo "{
         \"node\": {
         }
     }
- }" > "$USERDIR/.tern-config"
+ }" > "$HOME/.tern-config"
 
 # Return ownership of all files in user's home directory
-chown -R $USERNAME:$USERNAME $USERDIR
+chown -R $USERNAME:$USERNAME $HOME

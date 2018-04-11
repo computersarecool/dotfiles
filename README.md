@@ -1,37 +1,47 @@
 # dotfiles
-*A set of files to configure a Ubuntu Linux server*
- 
-This is tested on the Amazon AWS Ubuntu 16.04 AMI.
- 
-Amazon AWS AMI `star_server2` is based on this repo.
+*A set of files to configure Ubuntu Linux*
 
-There are a few parts to this repository:
-- A setup bash script which will create a user, set up that user's environment, install packages and install programs (works on Linux)
-- Service files, to configure services on start (works on Linux)
-- dot files to configure a user's environment (Works on Linux and WSL)
-- A modified version of the setup bash script which configures an existing user's environment (Works on Linux and WSL)
+## Description
+This repo contains several scripts and files to configure Ubuntu Linux including:
 
-### To run the full setup script:
+- A setup bash script which will create a user, configure that user's environment and install packages (Linux only)
+
+- A modified version of that setup script which will configure an existing user's environment and install packages (Linux and WSL)
+
+- `.` files to configure a user's environment (Linux and WSL)
+
+- `systemd` Service files to configure services on start (Linux only)
+
+## Tested On
+- Linux (Ubuntu 17.10)
+- Windows 10 (Ubuntu on Windows Subsystem for Linux)
+
+## To Use
+### Setup script
+- This will create a user with [this username](setup_files/setup_file.sh#L4)
+- The user password will be set to `temp`
+
 ```shell
 sudo ${PATH_TO_THIS_REPO}/setup_files/setup_file.sh
-# Then change the user password
 sudo passwd optonox
 ```
 
-The password for the user account is initially set to `temp`
+### Configure existing user
+- Set [username](setup_files/existing_user_setup.sh#L4)
+- If on WSL [change your home directory to match a typical Windows home directory](https://superuser.com/a/1134645/435434)
 
-### To configure an existing user's account:
 ```shell
-# cd to ${PATH_TO_THIS_REPO}/setup_files/
-sudo ./existing_user_setup.sh [WINDOWS]
-
-# If using Windows Subsytem for Linux pass any string as the arguement [WINDOWS] otherwise leave it blank
+# cd ${PATH_TO_THIS_REPO}/setup_files/
+sudo ./existing_user_setup.sh ${WINDOWS}
 ```
 
-### The setup file in this repo creates:
-- [this user](setup_files/setupfile.sh#L5)
+## Project Structure
+- `dotfiles` contains all of the dotfiles
+- `setup_files` contains scripts used to setup a user
+- `service_files` contains `systemd` service files
 
-### The setup file in this repo installs packages from the following lists:
+## Extra Notes
+### The setup file in this repo installs packages packages and programs from the following:
 - [apt install list](setup_files/apt_files.txt)
 - [npm install list](setup_files/npm_files.txt)
 
@@ -41,8 +51,8 @@ sudo ./existing_user_setup.sh [WINDOWS]
 ### This repo contains the following dotfiles:
 - `.bash_logout`
 - `.bashrc`
+- `config` (an example ssh config file)
 - `.profile`
-- `config` (example ssh config file)
 
 ### License
 
