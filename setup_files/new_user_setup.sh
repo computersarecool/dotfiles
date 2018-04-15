@@ -57,7 +57,7 @@ while read package; do
 done < npm_programs.txt
 
 # Move any ssh keys from the user running this script to the new users ssh folder
-cp "$THIS_HOME/.ssh" "$USER_HOME/.ssh"
+cp -TRv "$THIS_HOME/.ssh" "$USER_HOME/.ssh"
 
 # Make the dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
@@ -72,7 +72,7 @@ chown -R $USERNAME:$USERNAME $USER_HOME
 shopt -s dotglob
 
 # Make links to dotfiles
-for full_path in "$DOTFILES_LOCATION/"/dotfiles/*
+for full_path in "$DOTFILES_LOCATION"/dotfiles/*
 do
     base_path=$(basename $full_path)
 
@@ -87,8 +87,8 @@ do
     ln -sf "$full_path" "$USER_HOME/$base_path"
 done
 
-# Copy service files if not on Windows
-for full_path in "${REPO_PATH}/service_files/"*
+# Copy service files
+ for full_path in "$DOTFILES_LOCATION"/service_files//*
 do
     # Move service files and enable
     base_path=$(basename $full_path)

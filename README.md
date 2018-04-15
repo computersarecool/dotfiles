@@ -20,8 +20,13 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 ### Set up and configure new user
 - Install `git`
 - Set [username](setup_files/new_user_setup.sh#L7)
-- The user password will be set to `temp`
-- Run `sudo ${PATH_TO_THIS_REPO}/setup_files/new_user_setup.sh`
+- The user password is set to `temp`
+- Run:
+    ```shell
+    sudo chmod +x ${PATH_TO_THIS_REPO}/setup_files/new_user_setup.sh
+    sudo ${PATH_TO_THIS_REPO}/setup_files/new_user_setup.sh
+    sudo chmod password ${USERNAME} # Change password
+    ```
 
 ### Configure existing user
 - Install `git`
@@ -30,6 +35,7 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 - Run:
     ```shell
     cd ${PATH_TO_THIS_REPO}/setup_files/
+    sudo chmod +x existing_user_setup.sh
     sudo ./existing_user_setup.sh
     source ~/.profile
     ```
