@@ -31,6 +31,7 @@ This repo contains several scripts and files to configure Ubuntu Linux including
     ```shell
     cd ${PATH_TO_THIS_REPO}/setup_files/
     sudo ./existing_user_setup.sh
+    source ~/.profile
     ```
 
 ## Project Structure

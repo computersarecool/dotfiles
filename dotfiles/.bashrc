@@ -108,11 +108,6 @@ alias e='emacs'
 HISTCONTROL=ignorespace
 shopt -s extglob
 
-# Git auto-completion
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
-
 ###-begin-npm-completion-###
 # npm command completion script
 # Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
