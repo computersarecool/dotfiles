@@ -17,7 +17,7 @@ export VISUAL='emacsclient'
 
 export GDK_BACKEND=x11
 
-echo "$USERNAME's profile has loaded"
+echo "The $USERNAME .profile file has loaded"
 
 # Source bashrc if it exists
 if [ -f ~/.bashrc ]; then
