@@ -43,6 +43,8 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 ### The files in this repo install packages and programs from the following:
 - [apt install list](setup_files/apt_files.txt)
 - [npm install list](setup_files/npm_files.txt)
+- **Warning** This repo contains scripts that move and delete files. Please understand everything the scripts do before you use them
+
 
 ### License
 
