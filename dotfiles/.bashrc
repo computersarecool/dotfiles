@@ -61,7 +61,7 @@ PURPLE_BG="45"
 CYAN_BG="46"
 GREY_BG="47"
 
-# PS1 Variables
+# PS1 Variables used
 COLOR1="\[${bldcyn}\]"
 COLOR2="\[${bldblu}\]"
 COLOR3="\[${txtpur}\]"
@@ -104,7 +104,7 @@ alias ll='ls -lahG --color'
 alias emacs='emacsclient -t -a "" $*'
 alias e='emacs'
 
-# Configuration
+# General shell configuration
 HISTCONTROL=ignorespace
 shopt -s extglob
 
