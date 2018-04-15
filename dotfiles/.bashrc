@@ -164,4 +164,4 @@ fi
 ###-end-npm-completion-###
 
 # Notify .bashrc has loaded
-echo "The $USER bashrc file has loaded"
+echo "The $USER .bashrc file has loaded"
