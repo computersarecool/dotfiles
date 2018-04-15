@@ -4,19 +4,29 @@
 # If on WSL change your home directory: https://superuser.com/a/1134645/435434
 
 # Variables used in this script
-USERNAME=$SUDO_USER
+USERNAME="optonox"
+USER_HOME="/home/$USERNAME"
 GITHUB_USERNAME="computersarecool"
-SCRIPT=$(realpath -s $0)
-REPO_PATH="$(dirname "$(dirname "$SCRIPT")")"
-USER_HOME=$(eval echo ~$USERNAME)
-EMACS_PPA=ppa:kelleyk/emacs
+THIS_HOME=$(eval echo ~${SUDO_USER})
 MONGO_URL="http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
 NODE_URL="https://deb.nodesource.com/setup_8.x"
+EMACS_PPA=ppa:kelleyk/emacs
 
-# Set variable if on Windows
-if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-    IS_WINDOWS=true
-fi
+DOTFILES_LOCATION="$USER_HOME/Documents/projects/dotfiles"
+
+# Get location of this script
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+
+# This should be in the format: https://en.wikipedia.org/wiki/Gecos_field#format
+GECOS_INFO=""
+
+# Remove (possibly existing) user directory
+rm -rf "$USER_HOME"
+
+# Create user, set temp password and add to sudo group
+adduser $USERNAME --gecos "$GECOS_INFO" --disabled-password
+echo "$USERNAME:temp" | sudo chpasswd
+usermod -aG sudo "$USERNAME"
 
 # Add PPAs
 add-apt-repository $EMACS_PPA -y
@@ -46,11 +56,23 @@ while read package; do
     npm install -g $package
 done < npm_programs.txt
 
-# Show files that start with a dot
+# Move any ssh keys from the user running this script to the new users ssh folder
+cp -TRv "$THIS_HOME/.ssh" "$USER_HOME/.ssh"
+
+# Make the dotfiles folder
+mkdir -p "$DOTFILES_LOCATION"
+
+# Copy this repo into the dotfiles folder
+cp -R "$SCRIPT_DIR/../." "$DOTFILES_LOCATION"
+
+# Make $USERNAME owner of everything in user directory
+chown -R $USERNAME:$USERNAME $USER_HOME
+
+# Show dot files
 shopt -s dotglob
 
-# Make links to all dotfiles
-for full_path in "${REPO_PATH}"/dotfiles/*
+# Make links to dotfiles
+for full_path in "$DOTFILES_LOCATION"/dotfiles/*
 do
     base_path=$(basename $full_path)
 
@@ -65,16 +87,14 @@ do
     ln -sf "$full_path" "$USER_HOME/$base_path"
 done
 
-# Copy service files if not on Windows
-if [[ -z "$IS_WINDOWS" ]]; then
-  for full_path in "${REPO_PATH}/service_files/"*
-  do
-      # Move service files and enable
-      base_path=$(basename $full_path)
-      ln -f "$full_path" "/etc/systemd/system/$base_path"
-      systemctl enable "$base_path"
-  done
-fi
+# Copy service files
+ for full_path in "$DOTFILES_LOCATION"/service_files//*
+do
+    # Move service files and enable
+    base_path=$(basename $full_path)
+    ln -f "$full_path" "/etc/systemd/system/$base_path"
+    systemctl enable "$base_path"
+done
 
 # Get the newewst emacs config
 rm -rf "$USER_HOME/.emacs.d"
