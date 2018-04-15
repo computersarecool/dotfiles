@@ -1,5 +1,5 @@
 # dotfiles
-*A set of files to configure Ubuntu Linux*
+*Files to configure Ubuntu Linux*
 
 ## Description
 This repo contains several scripts and files to configure Ubuntu Linux including:
@@ -19,19 +19,19 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 ## To Use
 ### Set up and configure new user
 - Install `git`
-- This will create a user with [this username](setup_files/setup_file.sh#L4)
+- Set [username](setup_files/new_user_setup.sh#L7)
 - The user password will be set to `temp`
 - Run `sudo ${PATH_TO_THIS_REPO}/setup_files/new_user_setup.sh`
 
 ### Configure existing user
 - Install `git`
 - Set [username](setup_files/existing_user_setup.sh#L4)
-- If on WSL [change your home directory to match the normal Windows home directory](https://superuser.com/a/1134645/435434)
-
-```shell
-# cd ${PATH_TO_THIS_REPO}/setup_files/
-sudo ./existing_user_setup.sh ${WINDOWS}
-```
+- If on WSL [change your home directory](https://superuser.com/a/1134645/435434) to match the normal Windows home directory
+- Run:
+    ```shell
+    cd ${PATH_TO_THIS_REPO}/setup_files/
+    sudo ./existing_user_setup.sh
+    ```
 
 ## Project Structure
 - `dotfiles` contains all of the dotfiles
