@@ -2,7 +2,9 @@ USERNAME="optonox"
 
 # Set variables
 export TERM='xterm-256color'
+export GDK_BACKEND=x11
 
+# Set path
 export PATH=$PATH:/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/sbin:/usr/bin:/usr/local/sbin
@@ -12,10 +14,16 @@ export PATH=$PATH:$MONGO_PATH/bin
 
 export PATH=$PATH:~/.npm-global/bin
 
+export PATH=$HOME/.cargo/bin:$PATH
+
 export EDITOR='emacsclient'
 export VISUAL='emacsclient'
 
-export GDK_BACKEND=x11
+# Vulkan variables
+export VULKAN_SDK=~/vulkan/VulkanSDK/1.1.73.0/x86_64
+export PATH=$PATH:$VULKAN_SDK/bin
+export LD_LIBRARY_PATH=$VULKAN_SDK/
+export VK_LAYER_PATH=$VULKAN_SDK/etc/explicit_layer.d
 
 echo "$USERNAME's profile has loaded"
 
@@ -23,4 +31,3 @@ echo "$USERNAME's profile has loaded"
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
-

@@ -61,6 +61,18 @@ PURPLE_BG="45"
 CYAN_BG="46"
 GREY_BG="47"
 
+# LS Colors variables
+DIR="di=${GREEN}:"
+FILE="fi=${DEFAULT}:"
+LINK="ln=${RED}:"
+PIPE="pi=${RED}:"
+SOCK="so=${RED}:"
+BLOCK="bd=${RED}:"
+CHAR="cd=${RED}:"
+ORPHAN="or=${FLASHING};${RED}:"
+MISSING="mi=${DEFAULT}"
+EXEC="ex=${PURPLE}"
+
 # PS1 Variables used
 COLOR1="\[${bldcyn}\]"
 COLOR2="\[${bldblu}\]"
@@ -81,18 +93,6 @@ xterm*|rxvt*|eterm*|screen*)
     ;;
 esac
 
-# LS Colors variables
-DIR="di=${GREEN}:"
-FILE="fi=${DEFAULT}:"
-LINK="ln=${RED}:"
-PIPE="pi=${RED}:"
-SOCK="so=${RED}:"
-BLOCK="bd=${RED}:"
-CHAR="cd=${RED}:"
-ORPHAN="or=${FLASHING};${RED}:"
-MISSING="mi=${DEFAULT}"
-EXEC="ex=${PURPLE}"
-
 # Set LS Colors
 LS_COLORS="${DIR}${FILE}${LINK}${PIPE}${SOCK}${BLOCK}${CHAR}${ORPHAN}${MISSING}${EXEC}"
 export CLICOLOR=1
@@ -103,6 +103,7 @@ alias python='python3'
 alias ll='ls -lahG --color'
 alias emacs='emacsclient -t -a "" $*'
 alias e='emacs'
+alias gl='git log --oneline'
 
 # General shell configuration
 HISTCONTROL=ignorespace
