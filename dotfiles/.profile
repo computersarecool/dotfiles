@@ -25,7 +25,7 @@ export PATH=$PATH:$VULKAN_SDK/bin
 export LD_LIBRARY_PATH=$VULKAN_SDK/
 export VK_LAYER_PATH=$VULKAN_SDK/etc/explicit_layer.d
 
-echo "$USERNAME's profile has loaded"
+echo "The $USERNAME .profile file has loaded"
 
 # Source bashrc if it exists
 if [ -f ~/.bashrc ]; then
