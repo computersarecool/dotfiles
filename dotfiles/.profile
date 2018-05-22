@@ -1,8 +1,11 @@
-USERNAME="optonox"
+USERNAME=optonox
 
 # Set variables
-export TERM='xterm-256color'
+export TERM=xterm-256color
 export GDK_BACKEND=x11
+
+export EDITOR=emacsclient
+export VISUAL=emacsclient
 
 # Set path
 export PATH=$PATH:/bin
@@ -15,9 +18,6 @@ export PATH=$PATH:$MONGO_PATH/bin
 export PATH=$PATH:~/.npm-global/bin
 
 export PATH=$HOME/.cargo/bin:$PATH
-
-export EDITOR='emacsclient'
-export VISUAL='emacsclient'
 
 # Vulkan variables
 export VULKAN_SDK=~/vulkan/VulkanSDK/1.1.73.0/x86_64

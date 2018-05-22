@@ -1,9 +1,9 @@
-# Only read if this is interactive
+# Only read if this is an interactive shell
 if [ -z "$PS1" ]; then
   return
 fi
 
-# PS Color Variables
+# PS color variables
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -61,7 +61,7 @@ PURPLE_BG="45"
 CYAN_BG="46"
 GREY_BG="47"
 
-# LS Colors variables
+# LS color variables
 DIR="di=${GREEN}:"
 FILE="fi=${DEFAULT}:"
 LINK="ln=${RED}:"
@@ -73,7 +73,7 @@ ORPHAN="or=${FLASHING};${RED}:"
 MISSING="mi=${DEFAULT}"
 EXEC="ex=${PURPLE}"
 
-# PS1 Variables used
+# PS1 used colors
 COLOR1="\[${bldcyn}\]"
 COLOR2="\[${bldblu}\]"
 COLOR3="\[${txtpur}\]"
