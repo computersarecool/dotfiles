@@ -30,7 +30,6 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 
 ### Configure existing user
 - Install `git`
-- Set [username](setup_files/existing_user_setup.sh#L4)
 - If on WSL [change your home directory](https://superuser.com/a/1134645/435434) to match the normal Windows home directory
 - Run:
     ```shell
