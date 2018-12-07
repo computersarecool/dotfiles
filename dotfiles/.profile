@@ -1,6 +1,6 @@
 USERNAME=optonox
 
-# Set variables
+# Set terminal and display variables
 export TERM=xterm-256color
 export GDK_BACKEND=x11
 
@@ -19,12 +19,13 @@ export PATH=$PATH:~/.npm-global/bin
 
 export PATH=$HOME/.cargo/bin:$PATH
 
-# Vulkan variables
+# Set Vulkan variables
 export VULKAN_SDK=~/vulkan/VulkanSDK/1.1.73.0/x86_64
 export PATH=$PATH:$VULKAN_SDK/bin
 export LD_LIBRARY_PATH=$VULKAN_SDK/
 export VK_LAYER_PATH=$VULKAN_SDK/etc/explicit_layer.d
 
+# Notify .profile has loaded
 echo "The $USERNAME .profile file has loaded"
 
 # Source bashrc if it exists

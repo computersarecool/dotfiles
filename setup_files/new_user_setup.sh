@@ -20,7 +20,7 @@ SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 # This should be in the format: https://en.wikipedia.org/wiki/Gecos_field#format
 GECOS_INFO=""
 
-# Remove (possibly existing) user directory
+# Remove existing user directory
 rm -rf "$USER_HOME"
 
 # Create user, set temp password and add to sudo group
@@ -96,7 +96,7 @@ do
     systemctl enable "$base_path"
 done
 
-# Get the newewst emacs config
+# Get emacs config
 rm -rf "$USER_HOME/.emacs.d"
 git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$USER_HOME/.emacs.d"
 
