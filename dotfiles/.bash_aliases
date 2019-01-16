@@ -1,0 +1,5 @@
+alias ll='ls -lahG --color'
+alias python='python3'
+alias emacs='emacsclient -t -a "" $*'
+alias e='emacs'
+alias gl='git log --oneline'

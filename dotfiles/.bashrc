@@ -1,10 +1,11 @@
 # Only read if this is an interactive shell
-if [ -z "$PS1" ]; then
+if [[ -z "$PS1" ]] ; then
   return
 fi
 
-# PS color variables
-txtblk='\e[0;30m' # Black - Regular
+# PS colors
+# Regular
+txtblk='\e[0;30m' # Black
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
 txtylw='\e[0;33m' # Yellow
@@ -12,7 +13,9 @@ txtblu='\e[0;34m' # Blue
 txtpur='\e[0;35m' # Purple
 txtcyn='\e[0;36m' # Cyan
 txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
+
+# Bold
+bldblk='\e[1;30m' # Black
 bldred='\e[1;31m' # Red
 bldgrn='\e[1;32m' # Green
 bldylw='\e[1;33m' # Yellow
@@ -20,7 +23,9 @@ bldblu='\e[1;34m' # Blue
 bldpur='\e[1;35m' # Purple
 bldcyn='\e[1;36m' # Cyan
 bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
+
+# Underline
+unkblk='\e[4;30m' # Black
 undred='\e[4;31m' # Red
 undgrn='\e[4;32m' # Green
 undylw='\e[4;33m' # Yellow
@@ -28,7 +33,9 @@ undblu='\e[4;34m' # Blue
 undpur='\e[4;35m' # Purple
 undcyn='\e[4;36m' # Cyan
 undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
+
+# Background
+bakblk='\e[40m'   # Black
 bakred='\e[41m'   # Red
 bakgrn='\e[42m'   # Green
 bakylw='\e[43m'   # Yellow
@@ -37,7 +44,14 @@ bakpur='\e[45m'   # Purple
 bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 
-# LS Color Variables
+# PS1 used colors
+COLOR1="\[${bldcyn}\]"
+COLOR2="\[${bldblu}\]"
+COLOR3="\[${txtpur}\]"
+COLOR4="\[${bakcyn}\]"
+RESET="\[\e[m\]"
+
+# LS colors
 DEFAULT="00"
 BOLD="01"
 UNDERLINED="04"
@@ -61,7 +75,7 @@ PURPLE_BG="45"
 CYAN_BG="46"
 GREY_BG="47"
 
-# LS color variables
+# LS variables
 DIR="di=${GREEN}:"
 FILE="fi=${DEFAULT}:"
 LINK="ln=${RED}:"
@@ -73,18 +87,13 @@ ORPHAN="or=${FLASHING};${RED}:"
 MISSING="mi=${DEFAULT}"
 EXEC="ex=${PURPLE}"
 
-# PS1 used colors
-COLOR1="\[${bldcyn}\]"
-COLOR2="\[${bldblu}\]"
-COLOR3="\[${txtpur}\]"
-COLOR4="\[${bakcyn}\]"
-RESET="\[\e[m\]"
+# Set LS Colors
+LS_COLORS="${DIR}${FILE}${LINK}${PIPE}${SOCK}${BLOCK}${CHAR}${ORPHAN}${MISSING}${EXEC}"
+export CLICOLOR=1
+export LS_COLORS
 
-# Set PS1
+# Set PS1 depending on terminal type
 case "$TERM" in
-"dumb")
-    PS1="> "
-    ;;
 xterm*|rxvt*|eterm*|screen*)
     PS1="${COLOR1}\u${RESET}@${COLOR2}\H${COLOR3}\w ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${RESET} "
     ;;
@@ -93,21 +102,20 @@ xterm*|rxvt*|eterm*|screen*)
     ;;
 esac
 
-# Set LS Colors
-LS_COLORS="${DIR}${FILE}${LINK}${PIPE}${SOCK}${BLOCK}${CHAR}${ORPHAN}${MISSING}${EXEC}"
-export CLICOLOR=1
-export LS_COLORS
-
-# Aliases
-alias python='python3'
-alias ll='ls -lahG --color'
-alias emacs='emacsclient -t -a "" $*'
-alias e='emacs'
-alias gl='git log --oneline'
-
 # General shell configuration
 HISTCONTROL=ignorespace
 shopt -s extglob
+
+# Add bash aliases
+if [[ -f ~/.bash_aliases ]] ; then
+    source ~/.bash_aliases
+fi
+
+# Notify .bashrc has loaded
+echo "The $USER .bashrc file has loaded"
+
+
+# Everything below this line was automatically added by an installer and should be deleted before this is used on a new system
 
 ###-begin-npm-completion-###
 # npm command completion script
@@ -164,5 +172,23 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
-# Notify .bashrc has loaded
-echo "The $USER .bashrc file has loaded"
+# added by Anaconda3 5.3.0 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/home/optonox/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/home/optonox/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/optonox/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/home/optonox/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

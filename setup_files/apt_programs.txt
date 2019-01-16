@@ -6,5 +6,6 @@ pylint
 emacs25
 cmake
 nodejs
-mongodb-org
+npm
+mongodb
 virtualenv
