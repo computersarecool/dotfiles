@@ -4,33 +4,34 @@
 ## Description
 This repo contains several scripts and files to configure Ubuntu Linux including:
 
-- A setup bash script that will create a user, configure that user's environment and install packages (Linux only)
+- A setup bash script that will create a user, configure that user's environment and install packages (only works on Linux)
 
-- A modified version of that setup script that will configure an existing user's environment and install packages (Linux and WSL)
+- A modified version of that setup script that will configure an existing user's environment and install packages (works on Linux and WSL)
 
-- `.` files to configure a user's environment (Linux and WSL)
+- `.` files to configure a user's environment (work on Linux and WSL)
 
-- Service files to configure services on start via `systemd` (Linux only)
+- Service files to configure services on start via `systemd` (works on Linux only)
 
 ## Tested On
-- Linux (Ubuntu 17.10)
+- Linux (Ubuntu 18.04)
 - Windows 10 (Ubuntu on Windows Subsystem for Linux)
 
 ## To Use
-### Set up and configure new user
 - Install `git`
-- Set [username](setup_files/new_user_setup.sh#L7)
-- The user password is set to `temp`
+- Clone this repo to `~/Documents/projects/dotfiles`
+- Remove the automatically added text [below this line](dotfiles/.bashrc#L118)
+
+### To create and configure a new user
+- Set the [username to what you want](setup_files/new_user_setup.sh#L7)
 - Run:
     ```shell
     sudo chmod +x ${PATH_TO_THIS_REPO}/setup_files/new_user_setup.sh
     sudo ${PATH_TO_THIS_REPO}/setup_files/new_user_setup.sh
-    sudo chmod password ${USERNAME} # Change password
+    sudo chmod password ${USERNAME} # Password is initally set to temp 
     ```
 
-### Configure existing user
-- Install `git`
-- If on WSL [change your home directory](https://superuser.com/a/1134645/435434) to match the normal Windows home directory
+### To configure an existing user
+- Set the [username to what you want](setup_files/existing_user_setup.sh#L4)
 - Run:
     ```shell
     cd ${PATH_TO_THIS_REPO}/setup_files/
