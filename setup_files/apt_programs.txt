@@ -9,3 +9,4 @@ nodejs
 npm
 mongodb
 virtualenv
+git-lfs
