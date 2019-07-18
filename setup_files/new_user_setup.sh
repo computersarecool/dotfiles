@@ -24,8 +24,8 @@ rm -rf "$NEW_USER_HOME"
 
 # Create new user, set temp password and add to sudo group
 adduser ${NEW_USERNAME} --gecos "$GECOS_INFO" --disabled-password
-echo "NEW_USERNAME:$TEMP_PASSWORD" | sudo chpasswd
-usermod -aG sudo "NEW_USERNAME"
+echo "$NEW_USERNAME:$TEMP_PASSWORD" | sudo chpasswd
+usermod -aG sudo "$NEW_USERNAME"
 
 # Add PPA(s)
 add-apt-repository ${EMACS_PPA} -y
@@ -47,9 +47,6 @@ npm config set prefix "NEW_USER_HOME/.npm-global"
 while read package; do
     npm install -g ${package}
 done < npm_programs.txt
-
-# Move any ssh keys from the user running this script to the new users ssh folder
-cp -TRv "THIS_USER_HOME/.ssh" "NEW_USER_HOME/.ssh"
 
 # Make the dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
