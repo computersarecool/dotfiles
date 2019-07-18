@@ -1,14 +1,15 @@
 #!/bin/bash
 
-# This assumes git is installed
-
-# Variables used throughout this script
-USERNAME=$SUDO_USER
+# Variables
+NEW_USERNAME=$1
+NEW_USER_HOME=$(eval echo ~$USERNAME)
+THIS_USERNAME=$SUDO_USER
+THIS_USER_HOME=$(eval echo ~$USERNAME)
 GITHUB_USERNAME="computersarecool"
 SCRIPT=$(realpath -s $0)
 REPO_PATH="$(dirname "$(dirname "$SCRIPT")")"
-USER_HOME=$(eval echo ~$USERNAME)
 EMACS_PPA=ppa:kelleyk/emacs
+TEMP_PASSWORD="temp"
 
 DOTFILES_LOCATION="$USER_HOME/Documents/projects/dotfiles"
 
@@ -18,16 +19,16 @@ SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 # This should be in the format: https://en.wikipedia.org/wiki/Gecos_field#format
 GECOS_INFO=""
 
-# Remove existing user directory
-rm -rf "$USER_HOME"
+# Remove new user home directory
+rm -rf "$NEW_USER_HOME"
 
-# Create user, set temp password and add to sudo group
-adduser $USERNAME --gecos "$GECOS_INFO" --disabled-password
-echo "$USERNAME:temp" | sudo chpasswd
-usermod -aG sudo "$USERNAME"
+# Create new user, set temp password and add to sudo group
+adduser ${NEW_USERNAME} --gecos "$GECOS_INFO" --disabled-password
+echo "NEW_USERNAME:$TEMP_PASSWORD" | sudo chpasswd
+usermod -aG sudo "NEW_USERNAME"
 
 # Add PPA(s)
-add-apt-repository $EMACS_PPA -y
+add-apt-repository ${EMACS_PPA} -y
 
 # Update apt
 apt update
@@ -35,20 +36,20 @@ apt upgrade -y --allow-unauthenticated
 
 # Install apt packages
 while read package; do
-    apt install -y $package
+    apt install -y ${package}
 done < apt_programs.txt
 
 # Create npm globals folder
-mkdir -p "$USER_HOME/.npm-global"
-npm config set prefix "$USER_HOME/.npm-global"
+mkdir -p "NEW_USER_HOME/.npm-global"
+npm config set prefix "NEW_USER_HOME/.npm-global"
 
 # Install npm packages
 while read package; do
-    npm install -g $package
+    npm install -g ${package}
 done < npm_programs.txt
 
 # Move any ssh keys from the user running this script to the new users ssh folder
-cp -TRv "$THIS_HOME/.ssh" "$USER_HOME/.ssh"
+cp -TRv "THIS_USER_HOME/.ssh" "NEW_USER_HOME/.ssh"
 
 # Make the dotfiles folder
 mkdir -p "$DOTFILES_LOCATION"
@@ -57,7 +58,7 @@ mkdir -p "$DOTFILES_LOCATION"
 cp -R "$SCRIPT_DIR/../." "$DOTFILES_LOCATION"
 
 # Make $USERNAME owner of everything in user directory
-chown -R $USERNAME:$USERNAME $USER_HOME
+chown -R ${THIS_USERNAME}:${THIS_USERNAME} ${THIS_USER_HOME}
 
 # Show dot files
 shopt -s dotglob
@@ -66,7 +67,7 @@ shopt -s dotglob
 for full_path in "$DOTFILES_LOCATION"/dotfiles/*
 do
     base_path=$(basename $full_path)
-    ln -sf "$full_path" "$USER_HOME/$base_path"
+    ln -sf "$full_path" "$THIS_USER_HOME/$base_path"
 done
 
 # Link and enable service files
@@ -78,8 +79,8 @@ do
 done
 
 # Get the latest emacs config
-rm -rf "$USER_HOME/.emacs.d"
-git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$USER_HOME/.emacs.d"
+rm -rf "$THIS_USER_HOME/.emacs.d"
+git clone "https://github.com/$GITHUB_USERNAME/dotemacs.git" "$$THIS_USER_HOME/.emacs.d"
 
 # Create a tern config file in home directory
 echo "{
@@ -87,7 +88,7 @@ echo "{
         \"node\": {
         }
     }
- }" > "$USER_HOME/.tern-config"
+ }" > "$THIS_USER_HOME/.tern-config"
 
 # Return ownership of all files in user's home directory
-chown -R $USERNAME:$USERNAME $USER_HOME
+chown -R ${THIS_USERNAME}:${THIS_USERNAME} ${$THIS_USER_HOME}

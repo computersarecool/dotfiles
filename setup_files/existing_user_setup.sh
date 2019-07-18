@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# This assumes git is installed
-
-# Variables used throughout this script
+# Variables
 USERNAME=$SUDO_USER
 GITHUB_USERNAME="computersarecool"
 SCRIPT=$(realpath -s $0)
@@ -10,7 +8,7 @@ REPO_PATH="$(dirname "$(dirname "$SCRIPT")")"
 USER_HOME=$(eval echo ~$USERNAME)
 EMACS_PPA=ppa:kelleyk/emacs
 
-# Set flag if on WSL
+# Check if on WSL
 if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     IS_WINDOWS=true
 fi
@@ -24,7 +22,7 @@ apt upgrade -y --allow-unauthenticated
 
 # Install apt packages
 while read package; do
-    apt install -y $package
+    apt install -y ${package}
 done < apt_programs.txt
 
 # Create npm globals folder
@@ -33,7 +31,7 @@ npm config set prefix "$USER_HOME/.npm-global"
 
 # Install npm packages
 while read package; do
-    npm install -g $package
+    npm install -g ${package}
 done < npm_programs.txt
 
 # Show files that start with a dot
@@ -69,4 +67,4 @@ echo "{
  }" > "$USER_HOME/.tern-config"
 
 # Return ownership of all files in user's home directory
-chown -R $USERNAME:$USERNAME $USER_HOME
+chown -R ${USERNAME}:${USERNAME} ${USER_HOME}

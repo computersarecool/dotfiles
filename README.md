@@ -1,6 +1,7 @@
 # dotfiles
 *Files to configure Ubuntu Linux*
 
+
 ## Description
 This repo contains several scripts and files to configure Ubuntu Linux including:
 
@@ -12,29 +13,35 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 
 - Service files to configure services on start via `systemd` (works on Linux only)
 
+
+### Dependencies
+- git
+
 ## Tested On
 - Linux (Ubuntu 18.04)
 - Windows 10 (Ubuntu on Windows Subsystem for Linux)
 
+
 ## To Use
 - Install `git`
 - Clone this repo to `~/Documents/projects/dotfiles`
-- Remove the automatically added text [below this line](dotfiles/.bashrc#L118)
+- Remove the automatically added text [below this line](dotfiles/.bashrc#L117) in `.basrhc`
+
 
 ### To create and configure a new user
-- Set the [username to what you want](setup_files/new_user_setup.sh#L7)
 - Run:
     ```shell
-    sudo chmod +x ${PATH_TO_THIS_REPO}/setup_files/new_user_setup.sh
-    sudo ${PATH_TO_THIS_REPO}/setup_files/new_user_setup.sh
-    sudo chmod password ${USERNAME} # Password is initally set to temp 
+    cd setup_files
+    sudo chmod +x new_user_setup.sh
+    sudo ./new_user_setup.sh ${NEW_USERNAME_YOU_WANT}
+    sudo chmod password ${NEW_USERNAME_YOU_WANT} # Password is initally set to temp 
     ```
 
+
 ### To configure an existing user
-- Set the [username to what you want](setup_files/existing_user_setup.sh#L4)
 - Run:
     ```shell
-    cd ${PATH_TO_THIS_REPO}/setup_files/
+    cd setup_files/
     sudo chmod +x existing_user_setup.sh
     sudo ./existing_user_setup.sh
     source ~/.profile
@@ -49,6 +56,7 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 ### The files in this repo install packages and programs from the following:
 - [apt install list](setup_files/apt_files.txt)
 - [npm install list](setup_files/npm_files.txt)
+- Due to the hardcoded references to github repos and specific settings, this is really meant to be a starting point, not used as is
 - **Warning:** This repo contains scripts that move and delete files. Please understand everything the scripts do before you use them
 
 
@@ -57,4 +65,3 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 :copyright: Willy Nolan 2017 
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
