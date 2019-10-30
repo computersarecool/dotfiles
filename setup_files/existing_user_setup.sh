@@ -45,14 +45,14 @@ do
 done
 
 # Link and enable service files if not on Windows
-if [[ -z "$IS_WINDOWS" ]]; then
-  for full_path in "${REPO_PATH}/service_files/"*
-  do
-      base_path=$(basename $full_path)
-      ln -f "$full_path" "/etc/systemd/system/$base_path"
-      systemctl enable "$base_path"
-  done
-fi
+#if [[ -z "$IS_WINDOWS" ]]; then
+#  for full_path in "${REPO_PATH}/service_files/"*
+#  do
+#      base_path=$(basename $full_path)
+#      ln -f "$full_path" "/etc/systemd/system/$base_path"
+#      systemctl enable "$base_path"
+#  done
+#fi
 
 # Get the latest emacs config
 rm -rf "$USER_HOME/.emacs.d"

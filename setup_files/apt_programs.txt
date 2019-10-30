@@ -1,12 +1,8 @@
 tree
 mosh
-python3
-python3-pip
 pylint
-emacs25
 cmake
 nodejs
 npm
-mongodb
 virtualenv
 git-lfs
