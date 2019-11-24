@@ -114,7 +114,7 @@ fi
 # Notify .bashrc has loaded
 echo "The $USER .bashrc file has loaded"
 
-# Everything below this line was automatically added by an installer and should be deleted before this is used on a new system
+# NOTE: Everything below this line was automatically added by an installer and should be deleted before this is used on a new system
 
 ###-begin-npm-completion-###
 # npm command completion script
@@ -207,3 +207,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
