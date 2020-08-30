@@ -31,7 +31,6 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 - Run:
     ```shell
     cd setup_files
-    sudo chmod +x new_user_setup.sh
     sudo ./new_user_setup.sh ${NEW_USERNAME_YOU_WANT}
     sudo chmod password ${NEW_USERNAME_YOU_WANT} # Password is initally set to temp 
     ```
@@ -41,7 +40,6 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 - Run:
     ```shell
     cd setup_files/
-    sudo chmod +x existing_user_setup.sh
     sudo ./existing_user_setup.sh
     source ~/.profile
     ```
