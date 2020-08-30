@@ -15,7 +15,7 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 
 
 ### Dependencies
-- git
+- `git`
 
 ## Tested On
 - Linux (Ubuntu 18.04)
@@ -23,7 +23,6 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 
 
 ## To Use
-- Install `git`
 - Clone this repo to `~/Documents/projects/dotfiles`
 - Remove the automatically added text [below this line](dotfiles/.bashrc#L117) in `.basrhc`
 
