@@ -24,8 +24,6 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 
 ## To Use
 - Clone this repo to `~/Documents/projects/dotfiles`
-- Remove the automatically added text [below this line](dotfiles/.bashrc#L117) in `.bashrc`
-
 
 ### To create and configure a new user
 - Run:
