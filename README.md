@@ -24,14 +24,11 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 
 ## To Use
 - Clone this repo to `~/Documents/projects/dotfiles`
-- Remove the automatically added text [below this line](dotfiles/.bashrc#L117) in `.bashrc`
-
 
 ### To create and configure a new user
 - Run:
     ```shell
     cd setup_files
-    sudo chmod +x new_user_setup.sh
     sudo ./new_user_setup.sh ${NEW_USERNAME_YOU_WANT}
     sudo chmod password ${NEW_USERNAME_YOU_WANT} # Password is initally set to temp 
     ```
@@ -41,7 +38,6 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 - Run:
     ```shell
     cd setup_files/
-    sudo chmod +x existing_user_setup.sh
     sudo ./existing_user_setup.sh
     source ~/.profile
     ```
@@ -53,8 +49,8 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 
 ## Extra Notes
 ### The files in this repo install packages and programs from the following:
-- [apt install list](setup_files/apt_files.txt)
-- [npm install list](setup_files/npm_files.txt)
+- [apt install list](setup_files/apt_programs.txt)
+- [npm install list](setup_files/npm_programs.txt)
 - Due to the hardcoded references to github repos and specific settings, this is really meant to be a starting point, not used as is
 - **Warning:** This repo contains scripts that move and delete files. Please understand everything the scripts do before you use them
 
