@@ -4,12 +4,13 @@ USERNAME=optonox
 export TERM=xterm-256color
 export GDK_BACKEND=x11
 
-export EDITOR=emacsclient
-export VISUAL=emacsclient
+export EDITOR=nano
+export VISUAL=nano
 
 # Set path
 export PATH=$PATH:/bin
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/sbin:/usr/bin:/usr/local/sbin
 
 export PATH=$PATH:~/.npm-global/bin
