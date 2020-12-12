@@ -1,5 +1,4 @@
 alias ll='ls -lahG --color'
-alias python='python3'
 alias emacs='emacsclient -t -a "" $*'
 alias ec='emacsclient --create-frame'
 alias e='emacs'

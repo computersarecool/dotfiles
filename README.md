@@ -29,8 +29,8 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 - Run:
     ```shell
     cd setup_files
-    sudo ./new_user_setup.sh ${NEW_USERNAME_YOU_WANT}
-    sudo chmod password ${NEW_USERNAME_YOU_WANT} # Password is initally set to temp 
+    sudo ./new_user_setup.sh ${NEW_USERNAME}
+    sudo chmod password ${NEW_USERNAME} # Change the password. It is initially set to: temp 
     ```
 
 
@@ -43,8 +43,8 @@ This repo contains several scripts and files to configure Ubuntu Linux including
     ```
 
 ## Project Structure
-- `dotfiles` contains all of the dotfiles
-- `setup_files` contains scripts used to setup a user
+- `dotfiles` contains the dotfiles
+- `setup_files` contains scripts to set up a user
 - `service_files` contains `systemd` service files
 
 ## Extra Notes

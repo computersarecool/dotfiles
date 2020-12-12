@@ -2,7 +2,6 @@ tree
 mosh
 pylint
 cmake
+git-lfs
 nodejs
 npm
-virtualenv
-git-lfs
