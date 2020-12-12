@@ -85,4 +85,4 @@ echo "{
  }" > "$THIS_USER_HOME/.tern-config"
 
 # Return ownership of all files in user's home directory
-chown -R ${THIS_USERNAME}:${THIS_USERNAME} ${$THIS_USER_HOME}
+chown -R ${THIS_USERNAME}:${THIS_USERNAME} ${THIS_USER_HOME}

@@ -23,7 +23,7 @@ This repo contains several scripts and files to configure Ubuntu Linux including
 
 
 ## To Use
-- Clone this repo to `~/Documents/projects/dotfiles`
+- Clone this repo to `~/Documents/projects/dotfiles` (on all operating systems)
 
 ### To create and configure a new user
 - Run:
