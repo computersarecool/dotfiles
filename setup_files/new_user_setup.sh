@@ -6,17 +6,14 @@ NEW_USER_HOME=$(eval echo ~$USERNAME)
 THIS_USERNAME=$SUDO_USER
 THIS_USER_HOME=$(eval echo ~$USERNAME)
 GITHUB_USERNAME="computersarecool"
-SCRIPT=$(realpath -s $0)
-REPO_PATH="$(dirname "$(dirname "$SCRIPT")")"
 EMACS_PPA=ppa:kelleyk/emacs
 TEMP_PASSWORD="temp"
-
 DOTFILES_LOCATION="$USER_HOME/Documents/projects/dotfiles"
 
 # Get location of this script
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
-# This should be in the format: https://en.wikipedia.org/wiki/Gecos_field#format
+# This is in the format: https://en.wikipedia.org/wiki/Gecos_field#format
 GECOS_INFO=""
 
 # Remove new user home directory
@@ -88,4 +85,4 @@ echo "{
  }" > "$THIS_USER_HOME/.tern-config"
 
 # Return ownership of all files in user's home directory
-chown -R ${THIS_USERNAME}:${THIS_USERNAME} ${$THIS_USER_HOME}
+chown -R ${THIS_USERNAME}:${THIS_USERNAME} ${THIS_USER_HOME}

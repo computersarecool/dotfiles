@@ -102,7 +102,7 @@ xterm*|rxvt*|eterm*|screen*)
     ;;
 esac
 
-# General shell configuration
+# Configure shell
 HISTCONTROL=ignorespace
 shopt -s extglob
 
