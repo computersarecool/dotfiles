@@ -94,8 +94,9 @@ export LS_COLORS
 
 # Set PS1 depending on terminal type
 case "$TERM" in
-xterm*|rxvt*|eterm*|screen*)
-    PS1="${COLOR1}\u${RESET}@${COLOR2}\H${COLOR3}\w ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${RESET} "
+    xterm*|rxvt*|eterm*|screen*)
+    LOCATION='`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1...\2#g"`'''
+    PS1="${COLOR1}\u${RESET}@${COLOR2}\H${COLOR3}$LOCATION ${COLOR4}(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))\$${RESET} "
     ;;
 *)
     PS1="> "
