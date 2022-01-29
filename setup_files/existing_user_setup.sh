@@ -22,6 +22,7 @@ apt upgrade -y --allow-unauthenticated
 
 # Install apt packages
 while read package; do
+    echo ${package}
     apt install -y ${package}
 done < apt_programs.txt
 
@@ -31,7 +32,7 @@ npm config set prefix "$USER_HOME/.npm-global"
 
 # Install npm packages
 while read package; do
-    npm install -g ${package}
+    npm install -g "${package}"
 done < npm_programs.txt
 
 # Show files that start with a dot
@@ -40,7 +41,7 @@ shopt -s dotglob
 # Make symlinks to all dotfiles
 for full_path in "${REPO_PATH}"/dotfiles/*
 do
-    base_path=$(basename $full_path)
+    base_path=$(basename "$full_path")
     ln -sf "$full_path" "$USER_HOME/$base_path"
 done
 
@@ -48,7 +49,7 @@ done
 if [[ -z "$IS_WINDOWS" ]]; then
   for full_path in "${REPO_PATH}/service_files/"*
   do
-      base_path=$(basename $full_path)
+      base_path=$(basename "$full_path")
       ln -f "$full_path" "/etc/systemd/system/$base_path"
       systemctl enable "$base_path"
   done
@@ -67,4 +68,4 @@ echo "{
  }" > "$USER_HOME/.tern-config"
 
 # Return ownership of all files in user's home directory
-chown -R ${USERNAME}:${USERNAME} ${USER_HOME}
+chown -R "${USERNAME}":"${USERNAME}" "${USER_HOME}"

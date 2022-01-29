@@ -2,9 +2,9 @@
 
 # Variables
 NEW_USERNAME=$1
-NEW_USER_HOME=$(eval echo ~$USERNAME)
+NEW_USER_HOME=$(eval echo ~"$USERNAME")
 THIS_USERNAME=$SUDO_USER
-THIS_USER_HOME=$(eval echo ~$USERNAME)
+THIS_USER_HOME=$(eval echo ~"$USERNAME")
 GITHUB_USERNAME="computersarecool"
 EMACS_PPA=ppa:kelleyk/emacs
 TEMP_PASSWORD="temp"
@@ -20,7 +20,7 @@ GECOS_INFO=""
 rm -rf "$NEW_USER_HOME"
 
 # Create new user, set temp password and add to sudo group
-adduser ${NEW_USERNAME} --gecos "$GECOS_INFO" --disabled-password
+adduser "${NEW_USERNAME}" --gecos "$GECOS_INFO" --disabled-password
 echo "$NEW_USERNAME:$TEMP_PASSWORD" | sudo chpasswd
 usermod -aG sudo "$NEW_USERNAME"
 
@@ -33,7 +33,7 @@ apt upgrade -y --allow-unauthenticated
 
 # Install apt packages
 while read package; do
-    apt install -y ${package}
+    apt install -y "${package}"
 done < apt_programs.txt
 
 # Create npm globals folder
@@ -52,7 +52,7 @@ mkdir -p "$DOTFILES_LOCATION"
 cp -R "$SCRIPT_DIR/../." "$DOTFILES_LOCATION"
 
 # Make $USERNAME owner of everything in user directory
-chown -R ${THIS_USERNAME}:${THIS_USERNAME} ${THIS_USER_HOME}
+chown -R "${THIS_USERNAME}":"${THIS_USERNAME}" "${THIS_USER_HOME}"
 
 # Show dot files
 shopt -s dotglob
@@ -85,4 +85,4 @@ echo "{
  }" > "$THIS_USER_HOME/.tern-config"
 
 # Return ownership of all files in user's home directory
-chown -R ${THIS_USERNAME}:${THIS_USERNAME} ${THIS_USER_HOME}
+chown -R "${THIS_USERNAME}":"${THIS_USERNAME}" "${THIS_USER_HOME}"
