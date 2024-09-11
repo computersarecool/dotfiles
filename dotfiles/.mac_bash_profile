@@ -1,0 +1,15 @@
+# Mac specific bash items
+alias get_idf='. $HOME/esp/esp-idf/export.sh'
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export PATH=$PATH:$HOME/.local/bin
+export PATH=/opt/homebrew/bin:$PATH
+export PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:${PATH}"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH=$(gem environment gemdir)/bin:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/mcsteeze/google-cloud-sdk/path.bash.inc' ]; then . '/Users/mcsteeze/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '/Users/mcsteeze/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/mcsteeze/google-cloud-sdk/completion.bash.inc'; fi
+
+echo "The $USER .mac_bash_profile file has loaded"

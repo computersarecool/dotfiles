@@ -1,9 +1,0 @@
-[user]
-	email = willy@willynolan.com
-	name = computersarecool
-[core]
-	editor = emacs
-[push]
-	default = matching
-[credential]
-	helper = cache --timeout=23600

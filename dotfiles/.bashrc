@@ -107,13 +107,5 @@ esac
 HISTCONTROL=ignorespace
 shopt -s extglob
 
-# Add bash aliases
-if [[ -f ~/.bash_aliases ]] ; then
-    source ~/.bash_aliases
-fi
-
-# Git autocomplete
-source /usr/share/bash-completion/completions/git
-
 # Notify .bashrc has loaded
 echo "The $USER .bashrc file has loaded"

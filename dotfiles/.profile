@@ -1,9 +1,6 @@
-USERNAME=optonox
-
-# Set terminal and display variables
+# Set terminal, display and editor variables
 export TERM=xterm-256color
 export GDK_BACKEND=x11
-
 export EDITOR=emacs
 export VISUAL=emacs
 
@@ -13,13 +10,16 @@ export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/sbin:/usr/bin:/usr/local/sbin
 
-export PATH=$PATH:~/.npm-global/bin
-export PATH=$HOME/.cargo/bin:$PATH
+echo "The $USER .profile file has loaded"
 
-# Notify that .profile has loaded
-echo "The $USERNAME .profile file has loaded"
+if [ -f ~/.mac_bash_profile ]; then
+    source ~/.mac_bash_profile
+fi
 
-# Source bashrc if it exists
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
+
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi

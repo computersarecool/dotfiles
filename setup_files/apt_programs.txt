@@ -1,7 +1,0 @@
-tree
-mosh
-pylint
-cmake
-git-lfs
-nodejs
-npm
